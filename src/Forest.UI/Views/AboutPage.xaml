@@ -1,0 +1,43 @@
+﻿<Page x:Class="Forest.UI.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="{DynamicResource StringAboutShort}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1"
+                    Grid.Column="1">
+
+            <TextBlock>
+                <Run Text="Losch Installer"
+                     FontSize="18"/>
+                
+                <LineBreak/>
+                <LineBreak/>
+                
+                <Run Text="Version 1.0"/>
+                <LineBreak/>
+                <Run Text="{Binding CopyrightString}"/>
+                
+            </TextBlock>
+
+            <Button Content="{DynamicResource StringButtonBack}"
+                    Margin="0,10,0,0"
+                    Click="Button_Click"/>
+            
+        </StackPanel>
+
+    </Grid>
+</Page>

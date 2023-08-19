@@ -1,0 +1,50 @@
+﻿<Page x:Class="Forest.UI.Views.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:controls="clr-namespace:Forest.UI.Controls"
+      Title="{DynamicResource StringAppTitle}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:LinkButton Grid.Column="1"
+                             Grid.Row="1"
+                             MainText="{DynamicResource StringInstallApplication}"
+                             DescriptionText="{DynamicResource StringInstallApplicationDescription}"
+                             Margin="0,30,0,15">
+            
+            <controls:LinkButton.Icon>
+                <Viewbox Height="48"
+                         Width="48">
+                    <ContentControl Content="{DynamicResource Install}"/>
+                </Viewbox>
+            </controls:LinkButton.Icon>
+        </controls:LinkButton>
+
+        <controls:LinkButton Grid.Column="1"
+                             Grid.Row="2"
+                             MainText="{DynamicResource StringLibrary}"
+                             Margin="0,0,0,30"
+                             DescriptionText="{DynamicResource StringLibraryDescription}">
+            
+            <controls:LinkButton.Icon>
+                <Viewbox Height="48"
+                         Width="48">
+                    <ContentControl Content="{DynamicResource Library}"/>
+                </Viewbox>
+            </controls:LinkButton.Icon>
+        </controls:LinkButton>
+    </Grid>
+</Page>

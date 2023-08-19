@@ -1,0 +1,19 @@
+﻿<y:ResourceDictionary xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns="clr-namespace:System;assembly=mscorlib">
+
+    <String x:Key="StringAppTitle">Losch Installer</String>
+    <String x:Key="StringStartPageTitle">Start</String>
+
+    <String x:Key="StringAbout">Info zu Losch Installer</String>
+    <String x:Key="StringAboutShort">Informationen</String>
+
+    <String x:Key="StringButtonClose">Schließen</String>
+    <String x:Key="StringButtonBack">Zurück</String>
+
+    <String x:Key="StringInstallApplication">Anwendung installieren</String>
+    <String x:Key="StringInstallApplicationDescription">Eine neue Losch-Anwendung installieren</String>
+    <String x:Key="StringLibrary">Bibliothek</String>
+    <String x:Key="StringLibraryDescription">Eine Liste aller installierten Losch-Anwendungen anzeigen</String>
+    
+</y:ResourceDictionary>

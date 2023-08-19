@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<AssemblyName>forest</AssemblyName>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Forest.Common\Forest.Common.csproj" />
+	  <ProjectReference Include="..\Forest.UI\Forest.UI.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,95 @@
+﻿<uic:AdonisWindow x:Class="Forest.Views.MainView"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:vm="clr-namespace:Forest.ViewModels"
+                  xmlns:ui="clr-namespace:AdonisUI;assembly=AdonisUI"
+                  xmlns:uie="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+                  xmlns:uic="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+                  Title="{DynamicResource StringAppTitle}"
+                  Height="500"
+                  Width="500"
+                  WindowStartupLocation="CenterScreen"
+                  ResizeMode="CanMinimize"
+                  Icon="{DynamicResource AppIcon}"
+                  Background="{DynamicResource {x:Static ui:Brushes.Layer1BackgroundBrush}}"
+                  uie:LayerExtension.Layer="1">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                BorderThickness="0,0,0,1"
+                BorderBrush="{DynamicResource {x:Static ui:Brushes.Layer1BorderBrush}}"
+                Background="{DynamicResource {x:Static ui:Brushes.Layer2BackgroundBrush}}"
+                uie:LayerExtension.Layer="2">
+
+            <Border.Effect>
+                <DropShadowEffect Direction="270"
+                                  Opacity="1"
+                                  RenderingBias="Quality"
+                                  Color="#F0F0F0"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Margin="15"
+                           FontSize="18"
+                           Text="{Binding Title}"/>
+
+                <Button x:Name="aboutButton"
+                        Grid.Column="2"
+                        Style="{DynamicResource {x:Static ui:Styles.AccentToolbarButton}}"
+                        Content="{DynamicResource QuestionMark}"
+                        Margin="10"
+                        Height="{Binding ElementName=aboutButton, Path=ActualWidth}"
+                        ToolTip="{DynamicResource StringAbout}"
+                        Command="{Binding ShowAboutCommand}"/>
+            </Grid>
+        </Border>
+
+        <Frame Grid.Row="1"
+               Content="{Binding CurrentPage}"
+               Navigating="Frame_Navigating"
+               NavigationUIVisibility="Hidden"/>
+
+        <Border Grid.Row="2"
+                BorderThickness="0,1,0,0"
+                BorderBrush="{DynamicResource {x:Static ui:Brushes.Layer1BorderBrush}}"
+                Background="{DynamicResource {x:Static ui:Brushes.Layer2BackgroundBrush}}">
+
+            <Border.Effect>
+                <DropShadowEffect Direction="90"
+                                  Opacity="1"
+                                  RenderingBias="Quality"
+                                  Color="#F0F0F0"/>
+            </Border.Effect>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Margin="15"
+                        Grid.Column="1"
+                        MinWidth="75"
+                        Content="{DynamicResource StringButtonClose}"
+                        Command="{Binding CloseCommand}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</uic:AdonisWindow>
