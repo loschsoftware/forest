@@ -10,7 +10,12 @@ namespace Forest.ViewModels;
 
 public class MainViewModel : ObservableObject
 {
-    private Page _currentPage = new StartPage();
+    public MainViewModel()
+    {
+        _currentPage = new StartPage(this);
+    }
+
+    private Page _currentPage;
     public Page CurrentPage
     {
         get => _currentPage;
@@ -34,11 +39,21 @@ public class MainViewModel : ObservableObject
 
     public ICommand BackToMainPageCommand => new RelayCommand(() =>
     {
-        CurrentPage = new StartPage();
+        CurrentPage = new StartPage(this);
     });
 
     public ICommand ShowAboutCommand => new RelayCommand(() =>
     {
         CurrentPage = new AboutPage();
+    });
+
+    public ICommand ShowLibraryCommand => new RelayCommand(() =>
+    {
+        CurrentPage = new LibraryPage();
+    });
+    
+    public ICommand ShowInstallApplicationPageCommand => new RelayCommand(() =>
+    {
+        CurrentPage = new InstallApplicationPage();
     });
 }

@@ -23,7 +23,8 @@
                              Grid.Row="1"
                              MainText="{DynamicResource StringInstallApplication}"
                              DescriptionText="{DynamicResource StringInstallApplicationDescription}"
-                             Margin="0,30,0,15">
+                             Margin="0,30,0,15"
+                             Click="InstallApplication">
             
             <controls:LinkButton.Icon>
                 <Viewbox Height="48"
@@ -37,7 +38,8 @@
                              Grid.Row="2"
                              MainText="{DynamicResource StringLibrary}"
                              Margin="0,0,0,30"
-                             DescriptionText="{DynamicResource StringLibraryDescription}">
+                             DescriptionText="{DynamicResource StringLibraryDescription}"
+                             Click="ShowLibrary">
             
             <controls:LinkButton.Icon>
                 <Viewbox Height="48"

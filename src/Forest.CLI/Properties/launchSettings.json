@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Forest.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "help"
+    }
+  }
+}

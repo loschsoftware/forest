@@ -3,7 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="{DynamicResource StringInstallApplication}">
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel Orientation="Vertical"
+                Margin="20">
+
+        <TextBlock FontSize="18"
+                   Text="Verfügbare Anwendungen"/>
+    </StackPanel>
 </Page>

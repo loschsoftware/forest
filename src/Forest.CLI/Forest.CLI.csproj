@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net7.0-windows</TargetFramework>
-		<AssemblyName>forest</AssemblyName>
+		<AssemblyName>lintool</AssemblyName>
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
 	</PropertyGroup>

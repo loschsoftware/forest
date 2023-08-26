@@ -5,12 +5,13 @@
 		<TargetFramework>net7.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
-		<StartupObject>Forest.CLI.Program</StartupObject>
+		<StartupObject>Forest.UI.Program</StartupObject>
 		<AssemblyName>forestui</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Folder Include="Models\" />
+		<Folder Include="Views\WizardSteps\" />
 	</ItemGroup>
 
 	<ItemGroup>
