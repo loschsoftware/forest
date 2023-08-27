@@ -10,7 +10,7 @@
                   Width="500"
                   WindowStartupLocation="CenterScreen"
                   ResizeMode="CanMinimize"
-                  Icon="{DynamicResource AppIcon}"
+                  IconVisibility="Collapsed"
                   Background="{DynamicResource {x:Static ui:Brushes.Layer1BackgroundBrush}}"
                   uie:LayerExtension.Layer="1">
 

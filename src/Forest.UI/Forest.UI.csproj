@@ -7,6 +7,8 @@
 		<Platforms>x64</Platforms>
 		<StartupObject>Forest.UI.Program</StartupObject>
 		<AssemblyName>linui</AssemblyName>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<ApplicationIcon>Resources\cd.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
