@@ -5,15 +5,23 @@
     <String x:Key="StringAppTitle">Losch Installer</String>
     <String x:Key="StringStartPageTitle">Start</String>
 
+    <String x:Key="StringInvalidPackageMessage">Das angegebene Installer-Paket ist ungültig.</String>
+
     <String x:Key="StringAbout">Info zu Losch Installer</String>
     <String x:Key="StringAboutShort">Informationen</String>
 
     <String x:Key="StringButtonClose">Schließen</String>
+    <String x:Key="StringButtonFinish">Fertigstellen</String>
     <String x:Key="StringButtonBack">Zurück</String>
+    <String x:Key="StringButtonNext">Weiter</String>
 
     <String x:Key="StringInstallApplication">Anwendung installieren</String>
     <String x:Key="StringInstallApplicationDescription">Eine neue Losch-Anwendung installieren</String>
     <String x:Key="StringLibrary">Bibliothek</String>
     <String x:Key="StringLibraryDescription">Eine Liste aller installierten Losch-Anwendungen anzeigen</String>
-    
+
+    <String x:Key="StringFinishPageTitle">Installation abgeschlossen</String>
+    <String x:Key="StringFinishPageBodyTextFallbackValue">Die Anwendung wurde erfolgreich installiert.</String>
+    <String x:Key="StringFinishPageStartCheckBoxFallbackValue">Anwendung starten</String>
+
 </y:ResourceDictionary>

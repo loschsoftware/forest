@@ -22,8 +22,16 @@ public class InstallerManifest
     public string InstallerSource { get; set; }
 
     /// <summary>
+    /// The installer package information.
+    /// </summary>
+    public Package Package { get; set; }
+
+    /// <summary>
     /// The pages making up the installation process.
     /// </summary>
     [XmlArray("InstallerSteps")]
+    [XmlArrayItem(typeof(DefaultPage))]
+    [XmlArrayItem(typeof(CustomPage))]
+    [XmlArrayItem(typeof(InstallationProcedure))]
     public InstallerPage[] Steps { get; set; } 
 }

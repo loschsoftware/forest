@@ -15,6 +15,11 @@ public class StringExtension : MarkupExtension
     public string Id { get; set; }
 
     /// <summary>
+    /// The fallback value if the string couldn't be found.
+    /// </summary>
+    public string FallbackValue { get; set; }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="StringExtension"/> type.
     /// </summary>
     /// <param name="id">The ID of the string to retrieve.</param>
@@ -35,6 +40,9 @@ public class StringExtension : MarkupExtension
 
         if (string.IsNullOrEmpty(str))
             ResourceProvider.GetString(Id, CultureInfo.GetCultureInfo("en-US"));
+
+        if (string.IsNullOrEmpty(str))
+            return FallbackValue;
 
         return str; 
     }

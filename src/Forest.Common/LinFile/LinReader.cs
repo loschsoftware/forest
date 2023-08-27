@@ -29,7 +29,8 @@ public class LinReader
         Current ??= new();
         GetManifest();
         GetRawFiles();
-        GetCustomStrings();
+        GetCustomObjects();
+        GetStrings();
         GetCustomPages();
     }
 
@@ -149,23 +150,23 @@ public class LinReader
     }
 
     /// <summary>
-    /// Gets all strings for custom pages.
+    /// Gets all strings for installer pages.
     /// </summary>
     /// <returns>A list of tuples containing the language info and a <see cref="ResourceDictionary"/> containing the strings themselves.</returns>
     /// <exception cref="LinException"></exception>
-    public List<(CultureInfo Culture, ResourceDictionary Dictionary)> GetCustomStrings()
+    public List<(CultureInfo Culture, ResourceDictionary Dictionary)> GetStrings()
     {
         List<(CultureInfo, ResourceDictionary)> strings = new();
         string dir = Path.Combine(WorkingDirectory, "Strings");
 
         if (Directory.Exists(dir))
         {
-            foreach (string cultureDir in Directory.GetDirectories(dir))
+            foreach (string file in Directory.GetFiles(dir))
             {
                 try
                 {
-                    using StreamReader sr = new(Path.Combine(cultureDir, "custom.xaml"));
-                    strings.Add((CultureInfo.GetCultureInfo(cultureDir.Split('\\').Last()), (ResourceDictionary)XamlReader.Parse(sr.ReadToEnd())));
+                    using StreamReader sr = new(file);
+                    strings.Add((CultureInfo.GetCultureInfo(Path.GetFileNameWithoutExtension(file)), (ResourceDictionary)XamlReader.Parse(sr.ReadToEnd())));
                 }
                 catch (Exception ex)
                 {
@@ -177,5 +178,38 @@ public class LinReader
         Current.CustomStrings = strings;
 
         return strings;
+    }
+
+    /// <summary>
+    /// Gets all data objects associated with the installer.
+    /// </summary>
+    /// <returns>A list of <see cref="DataObject"/> elements.</returns>
+    public List<DataObject> GetCustomObjects()
+    {
+        List<DataObject> objects = new();
+        string dir = Path.Combine(WorkingDirectory, "Data");
+        string file = Path.Combine(dir, "objects.xml");
+
+        if (Directory.Exists(dir) && File.Exists(file))
+        {
+            try
+            {
+                using StreamReader sr = new(file);
+                XmlSerializer xmls = new(typeof(DataObjectManifest));
+
+                DataObjectManifest manifest = (DataObjectManifest)xmls.Deserialize(sr);
+
+                foreach (DataObject obj in manifest.Objects)
+                    objects.Add(obj);
+            }
+            catch (Exception ex)
+            {
+                throw new LinException("Invalid LIN file.", ex);
+            }
+        }
+
+        Current.Objects = objects;
+
+        return objects;
     }
 }

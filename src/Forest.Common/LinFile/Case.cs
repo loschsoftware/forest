@@ -26,6 +26,9 @@ public class Case
     /// An array of pages that will be shown if the case is fulfilled.
     /// </summary>
     [XmlArray]
+    [XmlArrayItem(typeof(DefaultPage))]
+    [XmlArrayItem(typeof(CustomPage))]
+    [XmlArrayItem(typeof(InstallationProcedure))]
     public InstallerPage[] Pages { get; set; }
 }
 

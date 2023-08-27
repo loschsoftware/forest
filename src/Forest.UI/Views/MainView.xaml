@@ -82,12 +82,30 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Margin="15"
+                <Button Margin="15,15,0,15"
                         Grid.Column="1"
                         MinWidth="75"
-                        Content="{DynamicResource StringButtonClose}"
+                        Content="{DynamicResource StringButtonBack}"
+                        Command="{Binding BackCommand}"
+                        Visibility="{Binding BackButtonVisibility}"
+                        IsEnabled="{Binding IsBackButtonEnabled}"/>
+
+                <Button Margin="15,15,0,15"
+                        Grid.Column="2"
+                        MinWidth="75"
+                        Content="{DynamicResource StringButtonNext}"
+                        Command="{Binding NextCommand}"
+                        Visibility="{Binding NextButtonVisibility}"
+                        IsDefault="True"/>
+
+                <Button Margin="15"
+                        Grid.Column="3"
+                        MinWidth="75"
+                        Content="{Binding CloseButtonText}"
                         Command="{Binding CloseCommand}"/>
             </Grid>
         </Border>

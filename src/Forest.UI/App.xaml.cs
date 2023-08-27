@@ -1,8 +1,62 @@
-﻿using System.Windows;
+﻿using Forest.UI.Views.WizardSteps;
+using Forest.ViewModels;
+using Forest.Views;
+using Losch.Installer;
+using Losch.Installer.LinFile;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace Forest;
 
 public partial class App : Application
 {
+    private static Page GetPage(string id) => id switch
+    {
+        "WelcomePage" => new WelcomePage(),
+        "FinishPage" => new FinishPage(),
+        "" or null => new InstallationProgressPage(),
+        _ => ResourceProvider.GetCustomPage(id)
+    };
 
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+        MainView main = new();
+        MainViewModel vm = main.DataContext as MainViewModel;
+
+        if (Environment.GetCommandLineArgs().Length > 1 && File.Exists(Environment.GetCommandLineArgs()[1]))
+        {
+            try
+            {
+                LinReader lr = new(Environment.GetCommandLineArgs()[1]);
+
+                vm.NextButtonVisibility = Visibility.Visible;
+                vm.BackButtonVisibility = Visibility.Visible;
+
+                ObservableCollection<Page> pages = new();
+
+                foreach (InstallerPage page in lr.GetManifest().Steps)
+                {
+                    pages.Add(GetPage(page.Id));
+                }
+
+                vm.InstallerPages = pages;
+            }
+            catch (Exception)
+            {
+                AdonisUI.Controls.MessageBox.Show(
+                    (string)Current.TryFindResource("StringInvalidPackageMessage"),
+                    (string)Current.TryFindResource("StringAppTitle"),
+                    AdonisUI.Controls.MessageBoxButton.OK,
+                    AdonisUI.Controls.MessageBoxImage.Error);
+
+                Current.Shutdown();
+            }
+        }
+
+        
+        main.Show();
+    }
 }

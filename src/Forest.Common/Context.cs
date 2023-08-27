@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Windows;
 using System.Globalization;
+using DataObject = Losch.Installer.LinFile.DataObject;
 
 namespace Losch.Installer;
 
@@ -19,4 +20,20 @@ internal class Context
     public List<(CultureInfo Culture, ResourceDictionary Dictionary)> CustomStrings { get; set; }
 
     public List<(string FileName, byte[] Data)> Files { get; set; }
+
+    public List<DataObject> Objects { get; set; }
+
+    public List<DataObject> DefaultObjects => new()
+    {
+        new()
+        {
+            Name = "InstallationPath"
+        },
+
+        new()
+        {
+            Name = "StartAfterInstall",
+            Value = "true"
+        }
+    };
 }

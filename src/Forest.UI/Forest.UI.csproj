@@ -6,12 +6,11 @@
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
 		<StartupObject>Forest.UI.Program</StartupObject>
-		<AssemblyName>forestui</AssemblyName>
+		<AssemblyName>linui</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Folder Include="Models\" />
-		<Folder Include="Views\WizardSteps\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -22,6 +21,12 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Forest.Common\Forest.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\WizardSteps\FinishPage.xaml.cs">
+	    <SubType>Code</SubType>
+	  </Compile>
 	</ItemGroup>
 
 </Project>
