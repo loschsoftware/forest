@@ -111,9 +111,18 @@ public class MainViewModel : ObservableObject
 
     public ICommand BackCommand => new RelayCommand(() =>
     {
+        CloseButtonText = (string)Application.Current.TryFindResource("StringButtonClose");
+        NextButtonVisibility = Visibility.Visible;
+
+        if (_pageIndex - 1 < 0)
+        {
+            IsBackButtonEnabled = false;
+            return;
+        }
+
         CurrentPage = InstallerPages[--_pageIndex];
 
-        if (_pageIndex < 0)
+        if (_pageIndex - 1 < 0)
             IsBackButtonEnabled = false;
     });
 
@@ -127,6 +136,7 @@ public class MainViewModel : ObservableObject
         }
 
         CurrentPage = InstallerPages[++_pageIndex];
+        IsBackButtonEnabled = true;
 
         if (InstallerPages.Count <= _pageIndex + 1)
         {
