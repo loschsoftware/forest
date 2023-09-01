@@ -6,6 +6,7 @@ using Losch.Installer.LinFile;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,7 +14,7 @@ namespace Forest;
 
 public partial class App : Application
 {
-    private static Page GetPage(string id) => id switch
+    public static Page GetPage(string id) => id switch
     {
         "WelcomePage" => new WelcomePage(),
         "FinishPage" => new FinishPage(),
@@ -35,14 +36,11 @@ public partial class App : Application
                 vm.NextButtonVisibility = Visibility.Visible;
                 vm.BackButtonVisibility = Visibility.Visible;
 
-                ObservableCollection<Page> pages = new();
-
-                foreach (InstallerPage page in lr.GetManifest().Steps)
+                vm.InstallerPages = new()
                 {
-                    pages.Add(GetPage(page.Id));
-                }
+                    { 0, lr.GetManifest().Steps.ToList() }
+                };
 
-                vm.InstallerPages = pages;
             }
             catch (Exception)
             {
@@ -56,7 +54,7 @@ public partial class App : Application
             }
         }
 
-        
+
         main.Show();
     }
 }

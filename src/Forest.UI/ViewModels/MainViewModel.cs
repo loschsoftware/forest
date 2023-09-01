@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Forest.UI.Views;
+using Losch.Installer;
+using Losch.Installer.LinFile;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,19 +22,38 @@ public class MainViewModel : ObservableObject
             new StartPage(this)
         };
 
-        InstallerPages = pages;
+        Pages = pages;
     }
 
     private int _pageIndex = 0;
 
-    private ObservableCollection<Page> _installerPages = new();
-    public ObservableCollection<Page> InstallerPages
+    private int _index = 0;
+    
+    private int _pageDepth = 0;
+    private Dictionary<int, List<InstallerPage>> _installerPages = new();
+    public Dictionary<int, List<InstallerPage>> InstallerPages
     {
         get => _installerPages;
         set
         {
             SetProperty(ref _installerPages, value);
-            CurrentPage = InstallerPages.First();
+
+            ObservableCollection<Page> pages = new();
+            foreach (InstallerPage page in value[0])
+                pages.Add(App.GetPage(page.Id));
+
+            Pages = pages;
+        }
+    }
+
+    private ObservableCollection<Page> _pages = new();
+    public ObservableCollection<Page> Pages
+    {
+        get => _pages;
+        set
+        {
+            SetProperty(ref _pages, value);
+            CurrentPage = Pages.First();
         }
     }
 
@@ -120,7 +141,7 @@ public class MainViewModel : ObservableObject
             return;
         }
 
-        CurrentPage = InstallerPages[--_pageIndex];
+        CurrentPage = Pages[--_pageIndex];
 
         if (_pageIndex - 1 < 0)
             IsBackButtonEnabled = false;
@@ -128,17 +149,36 @@ public class MainViewModel : ObservableObject
 
     public ICommand NextCommand => new RelayCommand(() =>
     {
-        if (InstallerPages.Count <= _pageIndex + 1)
+        if (Pages.Count <= _pageIndex + 1)
         {
             NextButtonVisibility = Visibility.Collapsed;
             CloseButtonText = (string)Application.Current.TryFindResource("StringButtonFinish");
             return;
         }
 
-        CurrentPage = InstallerPages[++_pageIndex];
+        if (InstallerPages[_pageDepth].Count > _index /*&& (_index == 0 || Pages.Count <= _pageIndex + 1)*/)
+        {
+            InstallerPage current = InstallerPages[_pageDepth][_index++];
+
+            if (current.Cases != null && current.Cases.Any())
+            {
+                foreach (Case _case in current.Cases)
+                {
+                    if (ResourceProvider.GetObject(_case.Object ??= "") == (_case.Data ??= "") || _case is Else)
+                    {
+                        InstallerPages.Add(++_pageDepth, _case.Pages.ToList());
+
+                        for (int i = 0; i < _case.Pages.Length; i++)
+                            Pages.Insert(_index + i, App.GetPage(_case.Pages[i].Id));
+                    }
+                }
+            }
+        }
+
+        CurrentPage = Pages[++_pageIndex];
         IsBackButtonEnabled = true;
 
-        if (InstallerPages.Count <= _pageIndex + 1)
+        if (Pages.Count <= _pageIndex + 1)
         {
             NextButtonVisibility = Visibility.Collapsed;
             CloseButtonText = (string)Application.Current.TryFindResource("StringButtonFinish");
