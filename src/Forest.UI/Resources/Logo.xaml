@@ -1,0 +1,111 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Geometry x:Key="LogoGeometry1">F1 M4500,3000z M0,0z M2155.36,1174.15L2155.36,1699.51 2482.57,1699.51 2482.57,1810.4 2035.38,1810.4 2035.38,1174.15 2155.36,1174.15z</Geometry>
+    <Geometry x:Key="LogoGeometry2">F1 M4500,3000z M0,0z M3004.29,1586.8C3004.29,1715.87 2916.12,1820.39 2770.7,1820.39 2625.27,1820.39 2538.01,1715.86 2538.01,1586.8 2538.01,1458.64 2627.08,1353.21 2769.79,1353.21 2912.49,1353.21 3004.29,1458.64 3004.29,1586.8z M2648.9,1586.8C2648.9,1654.97 2689.8,1718.59 2770.7,1718.59 2851.59,1718.59 2892.5,1654.97 2892.5,1586.8 2892.5,1519.54 2845.24,1454.1 2770.7,1454.1 2690.71,1454.1 2648.9,1519.54 2648.9,1586.8z</Geometry>
+    <Geometry x:Key="LogoGeometry3">F1 M4500,3000z M0,0z M3373.31,1481.37C3341.5,1451.37 3305.14,1441.38 3262.42,1441.38 3209.7,1441.38 3180.62,1457.74 3180.62,1485.92 3180.62,1515.01 3206.98,1531.37 3264.24,1535 3348.77,1540.45 3456.02,1559.54 3456.02,1678.61 3456.02,1757.69 3391.49,1825.86 3263.33,1825.86 3192.43,1825.86 3121.54,1814.04 3056.09,1745.87L3110.63,1666.8C3142.44,1702.25 3215.16,1728.61 3265.15,1729.52 3306.96,1730.43 3346.04,1708.61 3346.04,1675.89 3346.04,1644.99 3320.59,1632.26 3256.97,1628.63 3172.44,1622.27 3071.55,1591.37 3071.55,1489.57 3071.55,1385.95 3178.8,1349.59 3260.61,1349.59 3330.6,1349.59 3383.32,1363.22 3435.12,1408.67L3373.31,1481.37z</Geometry>
+    <Geometry x:Key="LogoGeometry4">F1 M4500,3000z M0,0z M3911.39,1753.14C3859.58,1804.04 3805.05,1824.04 3738.69,1824.04 3608.71,1824.04 3500.55,1745.87 3500.55,1586.81 3500.55,1427.75 3608.71,1349.58 3738.69,1349.58 3802.31,1349.58 3851.4,1367.76 3900.48,1415.93L3830.49,1489.55C3804.13,1465.92 3771.41,1454.1 3740.51,1454.1 3665.98,1454.1 3611.44,1508.64 3611.44,1586.8 3611.44,1672.24 3669.61,1717.69 3738.69,1717.69 3774.14,1717.69 3809.59,1707.69 3836.85,1680.43L3911.39,1753.14z</Geometry>
+    <Geometry x:Key="LogoGeometry5">F1 M4500,3000z M0,0z M4071.35,1174.15L4071.35,1423.2C4111.34,1371.39 4160.42,1355.94 4211.32,1355.94 4338.57,1355.94 4394.92,1442.29 4394.92,1574.08L4394.92,1810.4 4284.03,1810.4 4284.03,1574.99C4284.03,1493.19 4241.31,1458.65 4182.23,1458.65 4116.79,1458.65 4071.34,1514.1 4071.34,1581.36L4071.34,1810.41 3960.45,1810.41 3960.45,1174.16 4071.35,1174.16z</Geometry>
+    <Geometry x:Key="LogoGeometry6">F1 M4500,3000z M0,0z M1388,1515.12L1388,1515.12 1501.12,1628.24 819.42,2309.94 819.42,2083.69z</Geometry>
+    <Geometry x:Key="LogoGeometry7">F1 M4500,3000z M0,0z M819.42,2309.94L819.42,2309.94 819.42,2309.94 819.42,2309.94z</Geometry>
+    <Geometry x:Key="LogoGeometry8">F1 M4500,3000z M0,0z M1741.5,1614.1L1741.5,1614.1 1741.5,1614.1 1741.5,1614.1z</Geometry>
+    <Geometry x:Key="LogoGeometry9">F1 M4500,3000z M0,0z M1721.51,1634.09L1721.51,1634.09 1034.1,2321.5 819.42,2309.94 1501.12,1628.24 1506.97,1634.09z</Geometry>
+    <Geometry x:Key="LogoGeometry10">F1 M4500,3000z M0,0z M1045.66,692.02L1045.66,692.02 1045.66,918.26 477.09,1486.84 363.96,1373.71z</Geometry>
+    <Geometry x:Key="LogoGeometry11">F1 M4500,3000z M0,0z M1059.8,932.4L1059.8,932.4 1741.5,1614.1 1515.26,1614.1 946.68,1045.52z</Geometry>
+    <Geometry x:Key="LogoGeometry12">F1 M4500,3000z M0,0z M1065.66,712.02L1065.66,712.02 1753.18,1399.53 1741.5,1614.1 1059.8,932.4 1065.66,926.54z</Geometry>
+    <Geometry x:Key="LogoGeometry13">F1 M4500,3000z M0,0z M363.96,1373.71L363.96,1373.71 358.1,1367.85 143.58,1367.85 832.94,678.5 1045.66,692.02z</Geometry>
+    <Geometry x:Key="LogoGeometry14">F1 M4500,3000z M0,0z M349.82,1387.85L349.82,1387.85 918.4,1956.43 805.28,2069.55 123.58,1387.85z</Geometry>
+    <Geometry x:Key="LogoGeometry15">F1 M4500,3000z M0,0z M123.58,1387.85L123.58,1387.85 805.28,2069.55 799.42,2075.41 799.42,2289.94 105.07,1595.58z</Geometry>
+    <DrawingGroup x:Key="LogoDrawingGroup" ClipGeometry="M0,0 V3000 H4500 V0 H0 Z">
+        <DrawingGroup Opacity="1">
+            <DrawingGroup Opacity="1">
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource LogoGeometry1}" />
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource LogoGeometry2}" />
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource LogoGeometry3}" />
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource LogoGeometry4}" />
+                <GeometryDrawing Brush="#FF000000" Geometry="{StaticResource LogoGeometry5}" />
+            </DrawingGroup>
+            <DrawingGroup Opacity="1">
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry6}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-1347.0677,5194.7896" EndPoint="-2169.0454,5194.7896" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry7}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-2321.447,5274.7783" EndPoint="-2321.4453,5274.7783" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry8}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-1177.4044,5434.7559" EndPoint="-1177.4037,5434.7559" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry9}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-2192.9131,5354.7671" EndPoint="-1325.8741,5354.7671" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry10}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-1127.0269,4370.7036" EndPoint="-1959.2212,4370.7036" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry11}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-1257.3907,5355.0088" EndPoint="-1257.3907,4509.291" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry12}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-1097.413,4377.9463" EndPoint="-1097.413,5330.9209" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry13}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-2100.0518,4210.7256" EndPoint="-1176.9584,4210.7256" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry14}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-2081.4766,4220.4858" EndPoint="-2081.4766,5004.897" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="{StaticResource LogoGeometry15}">
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush StartPoint="-2241.4546,5215.7168" EndPoint="-2241.4546,4301.8589" MappingMode="Absolute" SpreadMethod="Pad" Opacity="1" Transform="0.7071,-0.7071,0.7071,0.7071,-1268.9038,-3061.4048">
+                            <GradientStop Color="#FFAA15BE" Offset="0" />
+                            <GradientStop Color="#FF0090FF" Offset="1" />
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingGroup>
+    </DrawingGroup>
+    <DrawingImage x:Key="LogoDrawingImage" Drawing="{StaticResource LogoDrawingGroup}" />
+</ResourceDictionary>

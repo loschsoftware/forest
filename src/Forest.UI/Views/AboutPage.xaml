@@ -19,7 +19,7 @@
         <StackPanel Orientation="Vertical"
                     Grid.Row="1"
                     Grid.Column="1">
-
+            
             <TextBlock>
                 <Run Text="Losch Installer"
                      FontSize="18"/>
@@ -30,13 +30,13 @@
                 <Run Text="Version 1.0"/>
                 <LineBreak/>
                 <Run Text="{Binding CopyrightString}"/>
-                
+
             </TextBlock>
 
             <Button Content="{DynamicResource StringButtonBack}"
                     Margin="0,10,0,0"
                     Click="Button_Click"/>
-            
+
         </StackPanel>
 
     </Grid>

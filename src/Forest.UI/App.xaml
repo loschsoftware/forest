@@ -12,6 +12,7 @@
                 
                 <ResourceDictionary Source="./Resources/Images.xaml"/>
                 <ResourceDictionary Source="./Resources/VSIconsLight.xaml"/>
+                <ResourceDictionary Source="./Resources/Logo.xaml"/>
 
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI;component/ColorSchemes/Light.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/AdonisUI.ClassicTheme;component/Resources.xaml"/>

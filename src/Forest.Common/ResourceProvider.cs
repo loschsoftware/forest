@@ -59,7 +59,7 @@ internal static class ResourceProvider
         }
         catch (Exception)
         {
-            return null;
+            return "";
         }
     }
 
