@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Globalization;
 using DataObject = Losch.Installer.LinFile.DataObject;
+using Losch.Installer.Behaviors;
 
 namespace Losch.Installer;
 
@@ -36,4 +37,6 @@ internal class Context
             Value = "true"
         }
     };
+
+    public List<(string Name, Behavior Behavior)> Behaviors { get; set; }
 }

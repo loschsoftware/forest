@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Forest.UI.Views;
 using Losch.Installer;
+using Losch.Installer.Behaviors;
 using Losch.Installer.LinFile;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ public class MainViewModel : ObservableObject
     private int _pageIndex = 0;
 
     private int _index = 0;
-    
+
     private int _pageDepth = 0;
     private Dictionary<int, List<InstallerPage>> _installerPages = new();
     public Dictionary<int, List<InstallerPage>> InstallerPages
@@ -147,6 +148,8 @@ public class MainViewModel : ObservableObject
             IsBackButtonEnabled = false;
     });
 
+    List<(SerializedBehavior, Behavior)> _postBehaviors = new();
+
     public ICommand NextCommand => new RelayCommand(() =>
     {
         if (Pages.Count <= _pageIndex + 1)
@@ -156,9 +159,54 @@ public class MainViewModel : ObservableObject
             return;
         }
 
+        foreach ((SerializedBehavior serializedBehavior, Behavior behavior) in _postBehaviors)
+        {
+            Dictionary<string, string> objects = new();
+
+            foreach (var obj in Context.Current.Objects)
+                objects.Add(obj.Name, obj.Value);
+
+            int ret = behavior.Invoke(objects);
+
+            if (ret != 0 && serializedBehavior.IsCritical)
+            {
+                AdonisUI.Controls.MessageBox.Show(
+                    string.Format((string)Application.Current.TryFindResource("StringBehaviorError"), ret),
+                    (string)Application.Current.TryFindResource("StringAppTitle"),
+                    AdonisUI.Controls.MessageBoxButton.OK,
+                    AdonisUI.Controls.MessageBoxImage.Error);
+
+                Application.Current.Shutdown();
+            }
+        }
+
+        _postBehaviors.Clear();
+
         if (InstallerPages[_pageDepth].Count > _index /*&& (_index == 0 || Pages.Count <= _pageIndex + 1)*/)
         {
             InstallerPage current = InstallerPages[_pageDepth][_index++];
+
+            foreach (SerializedBehavior behavior in current.Behaviors ?? Array.Empty<SerializedBehavior>())
+            {
+                if (Context.Current.Behaviors.Any(b => b.Name == behavior.Name))
+                {
+                    Dictionary<string, string> objects = new();
+
+                    foreach (var obj in Context.Current.Objects)
+                        objects.Add(obj.Name, obj.Value);
+
+                    Context.Current.Behaviors.Where(b => b.Name == behavior.Name).ToList()
+                    .ForEach(b =>
+                    {
+                        if (behavior is PreBehavior)
+                            b.Behavior.Invoke(objects);
+
+                        else if (behavior is PostBehavior)
+                            _postBehaviors.Add((behavior, b.Behavior));
+
+                    });
+                }
+            }
 
             if (current.Cases != null && current.Cases.Any())
             {

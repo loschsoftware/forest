@@ -24,4 +24,8 @@
     <String x:Key="StringFinishPageBodyTextFallbackValue">The application was installed successfully.</String>
     <String x:Key="StringFinishPageStartCheckBoxFallbackValue">Start application</String>
 
+    <String x:Key="StringBehaviorError" xml:space="preserve">An error occured and the installation could not be completed successfully.
+    
+Error code: {0}</String>
+
 </y:ResourceDictionary>

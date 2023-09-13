@@ -14,6 +14,8 @@ namespace Forest;
 
 public partial class App : Application
 {
+    internal static LinReader lr;
+
     public static Page GetPage(string id) => id switch
     {
         "WelcomePage" => new WelcomePage(),
@@ -31,7 +33,7 @@ public partial class App : Application
         {
             try
             {
-                LinReader lr = new(Environment.GetCommandLineArgs()[1]);
+                lr = new(Environment.GetCommandLineArgs()[1]);
 
                 vm.NextButtonVisibility = Visibility.Visible;
                 vm.BackButtonVisibility = Visibility.Visible;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Losch.Installer.Behaviors;
+using System;
 using System.Xml.Serialization;
 
 namespace Losch.Installer.LinFile;
@@ -20,6 +21,14 @@ public abstract class InstallerPage
     /// </summary>
     [XmlArray]
     public Case[] Cases { get; set; }
+
+    /// <summary>
+    /// The behaviors to be run for this page.
+    /// </summary>
+    [XmlArray]
+    [XmlArrayItem(typeof(PreBehavior))]
+    [XmlArrayItem(typeof(PostBehavior))]
+    public SerializedBehavior[] Behaviors { get; set; }
 }
 
 /// <summary>

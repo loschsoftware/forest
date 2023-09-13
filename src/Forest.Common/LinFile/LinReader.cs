@@ -1,10 +1,12 @@
 ﻿global using static Losch.Installer.Context;
+using Losch.Installer.Behaviors;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -32,6 +34,7 @@ public class LinReader
         GetCustomObjects();
         GetStrings();
         GetCustomPages();
+        GetBehaviors();
     }
 
     /// <summary>
@@ -113,7 +116,6 @@ public class LinReader
         }
 
         Current.Files = files;
-
         return files;
     }
 
@@ -145,7 +147,6 @@ public class LinReader
         }
 
         Current.CustomPages = pages;
-
         return pages;
     }
 
@@ -176,7 +177,6 @@ public class LinReader
         }
 
         Current.CustomStrings = strings;
-
         return strings;
     }
 
@@ -209,7 +209,40 @@ public class LinReader
         }
 
         Current.Objects = objects;
-
         return objects;
+    }
+    
+    /// <summary>
+    /// Gets all behaviors associated with the installer.
+    /// </summary>
+    /// <returns>A list of behaviors.</returns>
+    public List<(string Name, Behavior Behavior)> GetBehaviors()
+    {
+        List<(string, Behavior)> behaviors = new();
+        string dir = Path.Combine(WorkingDirectory, "Behaviors");
+
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.GetFiles(dir, "*.dll").Concat(Directory.GetFiles(dir, "*.exe")))
+            {
+                Assembly a = Assembly.LoadFile(file);
+
+                foreach (Type t in a.GetTypes())
+                {
+                    foreach (MethodInfo m in t.GetMethods())
+                    {
+                        if (m.IsStatic 
+                            && m.ReturnType == typeof(int)
+                            && m.GetParameters().Select(p => p.ParameterType).ToArray().SequenceEqual(new Type[] { typeof(Dictionary<string, string>) }))
+                        {
+                            behaviors.Add((m.Name, new(m.CreateDelegate<Behavior>())));
+                        }
+                    }
+                }
+            }
+        }
+
+        Current.Behaviors = behaviors;
+        return behaviors;
     }
 }
