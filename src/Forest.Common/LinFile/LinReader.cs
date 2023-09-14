@@ -33,6 +33,7 @@ public class LinReader
         GetRawFiles();
         GetCustomObjects();
         GetStrings();
+        GetEventContainers();
         GetCustomPages();
         GetBehaviors();
     }
@@ -244,5 +245,29 @@ public class LinReader
 
         Current.Behaviors = behaviors;
         return behaviors;
+    }
+
+    /// <summary>
+    /// Gets all event containers, which are objects that contain event handlers for installer pages.
+    /// </summary>
+    /// <returns>A list of event containers for the current installer.</returns>
+    public List<object> GetEventContainers()
+    {
+        List<object> containers = new();
+        string dir = Path.Combine(WorkingDirectory, "Events");
+
+        if (Directory.Exists(dir))
+        {
+            foreach (string file in Directory.GetFiles(dir, "*.dll").Concat(Directory.GetFiles(dir, "*.exe")))
+            {
+                Assembly a = Assembly.LoadFile(file);
+
+                foreach (Type t in a.GetTypes())
+                    containers.Add(Activator.CreateInstance(t));
+            }
+        }
+
+        Current.EventContainers = containers;
+        return containers;
     }
 }

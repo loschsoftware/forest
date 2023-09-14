@@ -39,4 +39,6 @@ internal class Context
     };
 
     public List<(string Name, Behavior Behavior)> Behaviors { get; set; }
+
+    public List<object> EventContainers { get; set; }
 }

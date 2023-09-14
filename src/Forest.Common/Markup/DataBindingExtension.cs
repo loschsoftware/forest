@@ -15,6 +15,7 @@ public class DataBindingExtension : MarkupExtension
     /// <summary>
     /// The name of the data object to bind to.
     /// </summary>
+    [ConstructorArgument("objectName")]
     public string ObjectName { get; set; }
 
     /// <summary>
