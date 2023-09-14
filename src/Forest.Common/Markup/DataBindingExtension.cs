@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Markup;
 
 namespace Losch.Installer.Markup;
@@ -38,7 +39,13 @@ public class DataBindingExtension : MarkupExtension
 
         IProvideValueTarget value = (IProvideValueTarget)serviceProvider.GetService(typeof(IProvideValueTarget));
         DependencyProperty property = (DependencyProperty)value.TargetProperty;
-        FrameworkElement obj = (FrameworkElement)value.TargetObject;
+
+        dynamic obj = null;
+
+        if (value.TargetObject is FrameworkElement f)
+            obj = f;
+        else if (value.TargetObject is FrameworkContentElement c)
+            obj = c;
 
         Binding binding = new("Value")
         {

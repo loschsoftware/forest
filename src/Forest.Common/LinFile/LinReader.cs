@@ -131,7 +131,7 @@ public class LinReader
 
         if (Directory.Exists(dir))
         {
-            foreach (string file in Directory.GetFiles(dir))
+            foreach (string file in Directory.GetFiles(dir, "*.xaml"))
             {
                 using StreamReader sr = new(file);
 

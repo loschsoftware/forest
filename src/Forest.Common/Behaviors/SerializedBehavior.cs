@@ -55,4 +55,10 @@ public class InstallationBehavior : SerializedBehavior
     /// </summary>
     [XmlAttribute]
     public int Index { get; set; }
+
+    /// <summary>
+    /// Determines the displayed percentage of the installation progress bar after the behavior has been ran.
+    /// </summary>
+    [XmlAttribute]
+    public int StatusReport { get; set; }
 }
