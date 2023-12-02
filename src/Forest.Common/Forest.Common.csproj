@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<AssemblyName>lin</AssemblyName>
 		<RootNamespace>Losch.Installer</RootNamespace>
 		<UseWPF>true</UseWPF>

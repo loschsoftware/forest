@@ -26,13 +26,4 @@ public class LinException : Exception
     /// <param name="message">The exception message.</param>
     /// <param name="inner">The inner exception.</param>
     public LinException(string message, Exception inner) : base(message, inner) { }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="LinException"/> type.
-    /// </summary>
-    /// <param name="info"></param>
-    /// <param name="context"></param>
-	protected LinException(
-	  SerializationInfo info,
-      StreamingContext context) : base(info, context) { }
 }
