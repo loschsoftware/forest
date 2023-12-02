@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Losch.Installer.Compiler": {
+      "commandName": "Project",
+      "commandLineArgs": "lsedit.lin"
+    }
+  }
+}
