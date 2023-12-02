@@ -178,7 +178,7 @@ internal class Program
         il.Emit(OpCodes.Ret);
         tb.CreateType();
 
-        ab.SetEntryPoint(main);
+        ab.SetEntryPoint(main, PEFileKinds.WindowApplication);
         ab.Save(outFile);
 
         sw.Stop();
