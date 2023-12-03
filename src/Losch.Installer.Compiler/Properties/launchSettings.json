@@ -2,7 +2,7 @@
   "profiles": {
     "Losch.Installer.Compiler": {
       "commandName": "Project",
-      "commandLineArgs": "lsedit.lin"
+      "commandLineArgs": "lsedit.lin -out:\"lsedit_de.exe\" -title:\"LSEdit Installer\" -company:Losch -version:1.0 -copyright:\"(C) 2023 Losch\" -icon:\"C:\\Users\\Jonas\\source\\repos\\loschsoftware\\forest\\src\\Forest.UI\\Resources\\cd.ico\""
     }
   }
 }

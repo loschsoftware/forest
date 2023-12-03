@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Losch.Installer.Compiler.Resources;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -26,6 +28,13 @@ internal class Program
         Console.WriteLine();
     }
 
+    private static int PrintUsage()
+    {
+        PrintLogo();
+        Console.WriteLine("Usage: linbsc <FileName> [-out:<FileName>] [-nores] [-res:<ResFile>] [-description:<Description>] [-product:<ProductName>] [-copyright:<Copyright>] [-trademark:<Trademark>] [-company:<Company>] [-version:<Version>] [-fileVersion:<FileVersion>] [-icon:<IconPath>]");
+        return 0;
+    }
+
     private static int Compile(string path, string[] options)
     {
         PrintLogo();
@@ -34,22 +43,39 @@ internal class Program
         if (options.Any(o => o.StartsWith("-out:")))
             outFile = string.Join("", options.First(o => o.StartsWith("-out:")).Split(':')[1..]);
 
-        string title = "";
+        string product = "";
         string copyright = "";
+        string trademark = "";
         string company = "";
         string version = "";
+        string fileVersion = "";
+        string iconFile = "";
+        string description = "";
+        string internalName = product;
 
-        if (options.Any(o => o.StartsWith("-title:")))
-            title = string.Join("", options.First(o => o.StartsWith("-title:")).Split(':')[1..]);
+        if (options.Any(o => o.StartsWith("-product:")))
+            product = string.Join(":", options.First(o => o.StartsWith("-product:")).Split(':')[1..]);
 
         if (options.Any(o => o.StartsWith("-copyright:")))
-            copyright = string.Join("", options.First(o => o.StartsWith("-copyright:")).Split(':')[1..]);
+            copyright = string.Join(":", options.First(o => o.StartsWith("-copyright:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-trademark:")))
+            trademark = string.Join(":", options.First(o => o.StartsWith("-trademark:")).Split(':')[1..]);
 
         if (options.Any(o => o.StartsWith("-company:")))
-            company = string.Join("", options.First(o => o.StartsWith("-company:")).Split(':')[1..]);
+            company = string.Join(":", options.First(o => o.StartsWith("-company:")).Split(':')[1..]);
 
         if (options.Any(o => o.StartsWith("-version:")))
-            version = string.Join("", options.First(o => o.StartsWith("-version:")).Split(':')[1..]);
+            version = string.Join(":", options.First(o => o.StartsWith("-version:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-fileVersion:")))
+            fileVersion = string.Join(":", options.First(o => o.StartsWith("-fileVersion:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-icon:")))
+            iconFile = string.Join(":", options.First(o => o.StartsWith("-icon:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-description:")))
+            description = string.Join(":", options.First(o => o.StartsWith("-description:")).Split(':')[1..]);
 
         Stopwatch sw = new();
         sw.Start();
@@ -188,31 +214,103 @@ internal class Program
         il.Emit(OpCodes.Ldloc_S, (byte)6);
         il.Emit(OpCodes.Callvirt, typeof(Stream).GetMethod("Close", BindingFlags.Public | BindingFlags.Instance, null, [], null));
 
+        il.DeclareLocal(typeof(string)); // 7
         il.Emit(OpCodes.Ldloc_S, (byte)4);
         il.Emit(OpCodes.Ldloc_S, (byte)0);
         il.Emit(OpCodes.Ldstr, "extract");
         il.Emit(OpCodes.Ldstr, Path.GetFileName(path));
         il.Emit(OpCodes.Call, typeof(Path).GetMethod("Combine", BindingFlags.Public | BindingFlags.Static, null, [typeof(string), typeof(string), typeof(string)], null));
+        il.Emit(OpCodes.Stloc_S, (byte)7);
+
+        il.Emit(OpCodes.Ldstr, " ");
+        il.Emit(OpCodes.Ldarg_S, (byte)0);
+        il.Emit(OpCodes.Ldloc_S, (byte)7);
+        il.Emit(OpCodes.Call, typeof(Enumerable).GetMethod("Prepend", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(typeof(string)));
+        il.Emit(OpCodes.Call, typeof(string).GetMethod("Join", BindingFlags.Public | BindingFlags.Static, null, [typeof(string), typeof(IEnumerable<string>)], null));
+
         il.Emit(OpCodes.Call, typeof(Process).GetMethod("Start", BindingFlags.Public | BindingFlags.Static, null, [typeof(string), typeof(string)], null));
         il.Emit(OpCodes.Pop);
 
         il.Emit(OpCodes.Ret);
         tb.CreateType();
 
-        ab.DefineVersionInfoResource(title, version, company, copyright, "");
+        if (!options.Any(o => o == "-nores"))
+        {
+            if (options.Any(o => o.StartsWith("-res:")))
+                ab.DefineUnmanagedResource(string.Join(":", options.First(o => o.StartsWith("-res:")).Split(':')[1..]));
+            else
+                EmbedResources(ab, product, description, fileVersion, internalName, copyright, trademark, company, version, iconFile);
+        }
 
         ab.SetEntryPoint(main, PEFileKinds.WindowApplication);
         ab.Save(outFile);
+
+        if (File.Exists("res.res"))
+            File.Delete("res.res");
 
         sw.Stop();
         Console.WriteLine($"Info: Compilation finished in {sw.Elapsed.TotalMilliseconds.ToString(CultureInfo.InvariantCulture)} ms.");
         return 0;
     }
 
-    private static int PrintUsage()
+    private static void EmbedResources(AssemblyBuilder ab, string product, string description, string fileVersion, string internalName, string copyright, string trademark, string company, string version, string iconFile)
     {
-        PrintLogo();
-        Console.WriteLine("Usage: linbsc <FileName> [-out:<FileName>]");
-        return 0;
+        string rc = WinSdkHelper.GetToolPath("rc.exe");
+
+        if (string.IsNullOrEmpty(rc))
+        {
+            Console.WriteLine("Warning: Could not locate necessary Windows SDK tools. Failed to set version information.");
+            return;
+        }
+
+        Console.WriteLine("Info: Setting version information as command-line options slows down the compilation. Consider precompiling your version information as a .res file and embedding it using the '-res:<ResFile>' option.");
+
+        string rcPath = "res.rc";
+        ResourceScriptWriter rsw = new(rcPath);
+
+        rsw.BeginVersionInfo();
+        rsw.AddFileVersion(fileVersion);
+        rsw.AddProductVersion(version);
+
+        rsw.Begin();
+        rsw.AddStringFileInfo(
+            company,
+            description,
+            fileVersion,
+            internalName,
+            copyright,
+            trademark,
+            product,
+            version
+            );
+
+        rsw.End();
+
+        if (!string.IsNullOrEmpty(iconFile) && !File.Exists(iconFile))
+        {
+            Console.WriteLine($"Error: Icon file '{iconFile}' does not exist.");
+            return;
+        }
+
+        if (File.Exists(iconFile))
+            rsw.AddMainIcon(iconFile);
+
+        rsw.Dispose();
+
+        ProcessStartInfo psi = new()
+        {
+            FileName = rc,
+            Arguments = rcPath,
+            CreateNoWindow = true,
+            WindowStyle = ProcessWindowStyle.Hidden
+        };
+
+        Process.Start(psi).WaitForExit();
+        string resFile = Path.ChangeExtension(rcPath, ".res");
+
+        if (File.Exists(resFile))
+            ab.DefineUnmanagedResource(resFile);
+
+        File.Delete(rcPath);
     }
 }
