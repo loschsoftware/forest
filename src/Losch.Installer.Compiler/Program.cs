@@ -155,7 +155,7 @@ internal class Program
         il.Emit(OpCodes.Callvirt, typeof(WebClient).GetMethod("DownloadFile", BindingFlags.Public | BindingFlags.Instance, null, [typeof(string), typeof(string)], null));
 
         il.BeginCatchBlock(typeof(Exception));
-        il.Emit(OpCodes.Ldstr, "Could not download files. Please check your internet connection.");
+        il.Emit(OpCodes.Ldstr, "Could not download necessary files. Please check your internet connection.");
         il.Emit(OpCodes.Ldstr, "Losch Installer");
         il.Emit(OpCodes.Ldc_I4, (int)MessageBoxButton.OK);
         il.Emit(OpCodes.Ldc_I4, (int)MessageBoxImage.Error);
