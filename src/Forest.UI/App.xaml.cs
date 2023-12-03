@@ -1,10 +1,10 @@
-﻿using Forest.UI.Views.WizardSteps;
+﻿using Forest.UI.Views;
+using Forest.UI.Views.WizardSteps;
 using Forest.ViewModels;
 using Forest.Views;
 using Losch.Installer;
 using Losch.Installer.LinFile;
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -26,6 +26,9 @@ public partial class App : Application
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
+        LoadingView loadingView = new();
+        loadingView.Show();
+
         MainView main = new();
         MainViewModel vm = main.DataContext as MainViewModel;
 
@@ -56,7 +59,7 @@ public partial class App : Application
             //}
         }
 
-
         main.Show();
+        loadingView.Close();
     }
 }

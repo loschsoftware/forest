@@ -28,4 +28,6 @@
     
 Error code: {0}</String>
 
+    <String x:Key="StringSetupIsStarting">Setup is starting...</String>
+
 </y:ResourceDictionary>

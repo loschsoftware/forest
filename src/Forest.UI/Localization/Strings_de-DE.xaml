@@ -28,4 +28,6 @@
     
 Fehlercode: {0}</String>
 
+    <String x:Key="StringSetupIsStarting">Setup wird gestartet...</String>
+
 </y:ResourceDictionary>
