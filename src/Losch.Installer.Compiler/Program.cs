@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -14,8 +15,7 @@ internal class Program
 {
     private static int Main(string[] args) => args switch
     {
-        [string path, ['-', 'o', 'u', 't', ':', .. string outName]] => Compile(path, outName),
-        [string path] => Compile(path, Path.ChangeExtension(path, ".exe")),
+        [string path, ..] => Compile(path, args[1..]),
         _ => PrintUsage()
     };
 
@@ -26,9 +26,30 @@ internal class Program
         Console.WriteLine();
     }
 
-    private static int Compile(string path, string outFile)
+    private static int Compile(string path, string[] options)
     {
         PrintLogo();
+
+        string outFile = Path.ChangeExtension(path, ".exe");
+        if (options.Any(o => o.StartsWith("-out:")))
+            outFile = string.Join("", options.First(o => o.StartsWith("-out:")).Split(':')[1..]);
+
+        string title = "";
+        string copyright = "";
+        string company = "";
+        string version = "";
+
+        if (options.Any(o => o.StartsWith("-title:")))
+            title = string.Join("", options.First(o => o.StartsWith("-title:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-copyright:")))
+            copyright = string.Join("", options.First(o => o.StartsWith("-copyright:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-company:")))
+            company = string.Join("", options.First(o => o.StartsWith("-company:")).Split(':')[1..]);
+
+        if (options.Any(o => o.StartsWith("-version:")))
+            version = string.Join("", options.First(o => o.StartsWith("-version:")).Split(':')[1..]);
 
         Stopwatch sw = new();
         sw.Start();
@@ -177,6 +198,8 @@ internal class Program
 
         il.Emit(OpCodes.Ret);
         tb.CreateType();
+
+        ab.DefineVersionInfoResource(title, version, company, copyright, "");
 
         ab.SetEntryPoint(main, PEFileKinds.WindowApplication);
         ab.Save(outFile);
