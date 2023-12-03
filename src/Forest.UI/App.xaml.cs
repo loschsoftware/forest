@@ -34,8 +34,8 @@ public partial class App : Application
 
         if (Environment.GetCommandLineArgs().Length > 1 && File.Exists(Environment.GetCommandLineArgs()[1]))
         {
-            //try
-            //{
+            try
+            {
                 lr = new(Environment.GetCommandLineArgs()[1]);
 
                 vm.NextButtonVisibility = Visibility.Visible;
@@ -46,17 +46,17 @@ public partial class App : Application
                     { 0, lr.GetManifest().Steps.ToList() }
                 };
 
-            //}
-            //catch (Exception)
-            //{
-            //    AdonisUI.Controls.MessageBox.Show(
-            //        (string)Current.TryFindResource("StringInvalidPackageMessage"),
-            //        (string)Current.TryFindResource("StringAppTitle"),
-            //        AdonisUI.Controls.MessageBoxButton.OK,
-            //        AdonisUI.Controls.MessageBoxImage.Error);
+            }
+            catch (Exception)
+            {
+                AdonisUI.Controls.MessageBox.Show(
+                    (string)Current.TryFindResource("StringInvalidPackageMessage"),
+                    (string)Current.TryFindResource("StringAppTitle"),
+                    AdonisUI.Controls.MessageBoxButton.OK,
+                    AdonisUI.Controls.MessageBoxImage.Error);
 
-            //    Current.Shutdown();
-            //}
+                Current.Shutdown();
+            }
         }
 
         main.Show();

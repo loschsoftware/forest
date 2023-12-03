@@ -36,6 +36,21 @@
 
         <controls:LinkButton Grid.Column="1"
                              Grid.Row="2"
+                             MainText="{DynamicResource StringInstallPackage}"
+                             DescriptionText="{DynamicResource StringInstallPackageDescription}"
+                             Margin="0,0,0,15"
+                             Click="InstallPackage">
+
+            <controls:LinkButton.Icon>
+                <Viewbox Height="48"
+                         Width="48">
+                    <ContentControl Content="{DynamicResource OpenFile}"/>
+                </Viewbox>
+            </controls:LinkButton.Icon>
+        </controls:LinkButton>
+
+        <controls:LinkButton Grid.Column="1"
+                             Grid.Row="3"
                              MainText="{DynamicResource StringLibrary}"
                              Margin="0,0,0,30"
                              DescriptionText="{DynamicResource StringLibraryDescription}"

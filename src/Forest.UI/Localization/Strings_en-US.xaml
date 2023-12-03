@@ -16,9 +16,11 @@
     <String x:Key="StringButtonNext">Next</String>
 
     <String x:Key="StringInstallApplication">Install application</String>
-    <String x:Key="StringInstallApplicationDescription">Install a new Losch application</String>
+    <String x:Key="StringInstallApplicationDescription">Install a new application</String>
     <String x:Key="StringLibrary">Library</String>
     <String x:Key="StringLibraryDescription">View your installed applications</String>
+    <String x:Key="StringInstallPackage">Install package</String>
+    <String x:Key="StringInstallPackageDescription">Install application from local .LIN package file</String>
 
     <String x:Key="StringFinishPageTitle">Installation complete</String>
     <String x:Key="StringFinishPageBodyTextFallbackValue">The application was installed successfully.</String>
@@ -30,4 +32,5 @@ Error code: {0}</String>
 
     <String x:Key="StringSetupIsStarting">Setup is starting...</String>
 
+    <String x:Key="StringLinFileFilter">Installer package (*.lin)|*.lin|Compiled installer package (*.exe)|*.exe|All files (*.*)|*.*</String>
 </y:ResourceDictionary>
