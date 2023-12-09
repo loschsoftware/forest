@@ -43,6 +43,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0"
@@ -50,8 +51,18 @@
                            FontSize="18"
                            Text="{Binding Title}"/>
 
-                <Button x:Name="aboutButton"
+                <Button x:Name="homeButton"
                         Grid.Column="2"
+                        Style="{DynamicResource {x:Static ui:Styles.AccentToolbarButton}}"
+                        Content="{DynamicResource Home}"
+                        Margin="10,10,0,10"
+                        Height="{Binding ElementName=homeButton, Path=ActualWidth}"
+                        ToolTip="{DynamicResource StringStartPage}"
+                        Command="{Binding ShowMainPageCommand}"
+                        Visibility="{Binding StartPageButtonVisibility}"/>
+
+                <Button x:Name="aboutButton"
+                        Grid.Column="3"
                         Style="{DynamicResource {x:Static ui:Styles.AccentToolbarButton}}"
                         Content="{DynamicResource QuestionMark}"
                         Margin="10"

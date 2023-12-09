@@ -26,20 +26,21 @@ public partial class App : Application
 
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-        LoadingView loadingView = new();
-        loadingView.Show();
-
         MainView main = new();
         MainViewModel vm = main.DataContext as MainViewModel;
 
         if (Environment.GetCommandLineArgs().Length > 1 && File.Exists(Environment.GetCommandLineArgs()[1]))
         {
+            LoadingView loadingView = new();
+            loadingView.Show();
+
             try
             {
                 lr = new(Environment.GetCommandLineArgs()[1]);
 
                 vm.NextButtonVisibility = Visibility.Visible;
                 vm.BackButtonVisibility = Visibility.Visible;
+                vm.StartPageButtonVisibility = Visibility.Collapsed;
 
                 vm.InstallerPages = new()
                 {
@@ -57,9 +58,10 @@ public partial class App : Application
 
                 Current.Shutdown();
             }
+
+            loadingView.Close();
         }
 
         main.Show();
-        loadingView.Close();
     }
 }

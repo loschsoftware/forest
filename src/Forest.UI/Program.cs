@@ -1,5 +1,4 @@
-﻿using Forest.Views;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows;
 
@@ -10,12 +9,19 @@ internal class Program
     [STAThread]
     static void Main(string[] args)
     {
-        App app = new();
-        app.InitializeComponent();
+        try
+        {
+            App app = new();
+            app.InitializeComponent();
 
-        if (CultureInfo.CurrentCulture.ThreeLetterISOLanguageName == "deu")
-            Application.Current.Resources.MergedDictionaries.RemoveAt(1);
+            if (CultureInfo.CurrentCulture.ThreeLetterISOLanguageName == "deu")
+                Application.Current.Resources.MergedDictionaries.RemoveAt(1);
 
-        app.Run();
+            app.Run();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
     }
 }

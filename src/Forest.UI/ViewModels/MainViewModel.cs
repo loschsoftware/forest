@@ -104,13 +104,20 @@ public class MainViewModel : ObservableObject
         set => SetProperty(ref _closeButtonText, value);
     }
 
+    private Visibility _startPageButtonVisibility = Visibility.Visible;
+    public Visibility StartPageButtonVisibility
+    {
+        get => _startPageButtonVisibility;
+        set => SetProperty(ref _startPageButtonVisibility, value);
+    }
+
     public string CopyrightString { get; set; } = $"© {DateTime.Now.Year} Losch";
 
     public ICommand CloseCommand => new RelayCommand(Application.Current.Shutdown);
 
-    public ICommand BackToMainPageCommand => new RelayCommand(() =>
+    public ICommand NavigateToLastPage => new RelayCommand(() =>
     {
-        CurrentPage = _prevPage;
+        CurrentPage = _prevPage ?? new StartPage(this);
     });
 
     Page _prevPage;
@@ -119,6 +126,12 @@ public class MainViewModel : ObservableObject
     {
         _prevPage = CurrentPage;
         CurrentPage = new AboutPage();
+    });
+
+    public ICommand ShowMainPageCommand => new RelayCommand(() =>
+    {
+        _prevPage = CurrentPage;
+        CurrentPage = new StartPage(this);
     });
 
     public ICommand ShowLibraryCommand => new RelayCommand(() =>

@@ -25,12 +25,12 @@
     <String x:Key="StringFinishPageTitle">Installation abgeschlossen</String>
     <String x:Key="StringFinishPageBodyTextFallbackValue">Die Anwendung wurde erfolgreich installiert.</String>
     <String x:Key="StringFinishPageStartCheckBoxFallbackValue">Anwendung starten</String>
-
     <String x:Key="StringBehaviorError" xml:space="preserve">Ein Fehler trat auf und die Installation konnte nicht erfolgreich durchgeführt werden.
     
 Fehlercode: {0}</String>
-
     <String x:Key="StringSetupIsStarting">Setup wird gestartet...</String>
-
     <String x:Key="StringLinFileFilter">Installer-Paket (*.lin)|*.lin|Kompiliertes Installer-Paket (*.exe)|*.exe|Alle Dateien (*.*)|*.*</String>
+    <String x:Key="StringSearchPackages">Pakete durchsuchen</String>
+    <String x:Key="StringFilter">Filtern</String>
+    <String x:Key="StringStartPage">Startseite</String>
 </y:ResourceDictionary>

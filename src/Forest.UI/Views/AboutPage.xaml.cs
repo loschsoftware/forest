@@ -15,6 +15,6 @@ public partial class AboutPage : Page
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        (DataContext as MainViewModel).BackToMainPageCommand.Execute(null);
+        (DataContext as MainViewModel).NavigateToLastPage.Execute(null);
     }
 }
