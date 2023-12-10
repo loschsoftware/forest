@@ -30,7 +30,20 @@
 Fehlercode: {0}</String>
     <String x:Key="StringSetupIsStarting">Setup wird gestartet...</String>
     <String x:Key="StringLinFileFilter">Installer-Paket (*.lin)|*.lin|Kompiliertes Installer-Paket (*.exe)|*.exe|Alle Dateien (*.*)|*.*</String>
-    <String x:Key="StringSearchPackages">Pakete durchsuchen</String>
+    <String x:Key="StringSearchPackages">Pakete durchsuchen (Strg+Q)</String>
     <String x:Key="StringFilter">Filtern</String>
     <String x:Key="StringStartPage">Startseite</String>
+    <String x:Key="StringNoPackagesFound">Keine Pakete gefunden.</String>
+    <String x:Key="StringSearchQueryNoPackagesFound">Keine Pakete entsprachen der Suche.</String>
+    <String x:Key="StringUpdateAvailable">Update verfügbar</String>
+    <String x:Key="StringDeprecated">Veraltet</String>
+    <String x:Key="StringVersion">Version</String>
+    <String x:Key="StringPublisher">Herausgeber</String>
+    <String x:Key="StringUnknown">Unbekannt</String>
+    <String x:Key="StringUnknownPackage">{0} (unbekanntes Paket)</String>
+    <String x:Key="StringUnknownPackageDescription">Das Paket enthält keine gültige Manifestdatei.</String>
+    <String x:Key="StringNew">Neu</String>
+    <String x:Key="StringException">Es trat eine unbehandelte Ausnahme auf. {0}</String>
+    <String x:Key="StringPackageTitleFormat">{0} ({1})</String>
+    <String x:Key="StringUnverified">Nicht verifiziert</String>
 </y:ResourceDictionary>

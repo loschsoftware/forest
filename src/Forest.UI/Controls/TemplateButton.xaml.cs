@@ -1,10 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using Forest.UI.Controls;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System;
 
 namespace Losch.LSEdit.Core.UI;
 
@@ -25,6 +26,8 @@ public partial class TemplateButton : UserControl
     public static readonly DependencyProperty MainTextProperty = DependencyProperty.Register("MainText", typeof(string), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty TagsProperty = DependencyProperty.Register("Tags", typeof(string), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty TagsVisibilityProperty = DependencyProperty.Register("TagsVisibility", typeof(Visibility), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
+    public static readonly DependencyProperty BadgesProperty = DependencyProperty.Register("Badges", typeof(IEnumerable<Badge>), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
+    public static readonly DependencyProperty BadgesVisibilityProperty = DependencyProperty.Register("BadgesVisibility", typeof(Visibility), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty FavoriteStarVisibilityProperty = DependencyProperty.Register("FavoriteStarVisibility", typeof(Visibility), typeof(TemplateButton), new FrameworkPropertyMetadata(Visibility.Collapsed));
     public static readonly DependencyProperty DescriptionTextProperty = DependencyProperty.Register("DescriptionText", typeof(string), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(TemplateButton), new FrameworkPropertyMetadata(null));
@@ -111,6 +114,18 @@ public partial class TemplateButton : UserControl
         set => SetValue(TagsVisibilityProperty, value);
     }
 
+    public IEnumerable<Badge> Badges
+    {
+        get => (IEnumerable<Badge>)GetValue(BadgesProperty);
+        set => SetValue(BadgesProperty, value);
+    }
+    
+    public Visibility BadgesVisibility
+    {
+        get => (Visibility)GetValue(BadgesVisibilityProperty);
+        set => SetValue(BadgesVisibilityProperty, value);
+    }
+
     public string DescriptionText
     {
         get => (string)GetValue(DescriptionTextProperty);
@@ -126,6 +141,7 @@ public partial class TemplateButton : UserControl
     private void UserControl_MouseEnter(object sender, MouseEventArgs e)
     {
         MainBorder.Background = (Brush)FindResource(AdonisUI.Brushes.AccentBrush);
+        Foreground = (Brush)new BrushConverter().ConvertFromString("#FFFFFF");
     }
 
     private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -139,6 +155,7 @@ public partial class TemplateButton : UserControl
     private void UserControl_MouseLeave(object sender, MouseEventArgs e)
     {
         MainBorder.Background = (Brush)FindResource(AdonisUI.Brushes.Layer2BackgroundBrush);
+        Foreground = (Brush)new BrushConverter().ConvertFromString("#000000");
     }
 
     private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

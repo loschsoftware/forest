@@ -21,7 +21,7 @@ internal class Program
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.Message);
+            AdonisUI.Controls.MessageBox.Show(string.Format((string)Application.Current.TryFindResource("StringException"), ex.ToString()), (string)Application.Current.TryFindResource("StringAppTitle"), AdonisUI.Controls.MessageBoxButton.OK, AdonisUI.Controls.MessageBoxImage.Error);
         }
     }
 }

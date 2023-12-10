@@ -10,6 +10,10 @@
         <vm:LibraryViewModel/>
     </Page.DataContext>
 
+    <Page.InputBindings>
+        <KeyBinding Command="{Binding FocusCommand}" CommandParameter="{Binding ElementName=SearchBox}" Gesture="Ctrl+Q"/>
+    </Page.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,11 +32,15 @@
             </Border.Effect>
 
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="150" Margin="5" Text="">
+                <TextBox Width="200"
+                         Margin="5"
+                         Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         x:Name="SearchBox">
                     <uie:WatermarkExtension.Watermark>
                         <StackPanel Orientation="Horizontal">
                             <ContentControl Content="{DynamicResource Search}"/>
-                            <TextBlock Margin="5,0,0,0" Text="{DynamicResource StringSearchPackages}"/>
+                            <TextBlock Margin="5,0,0,0"
+                                       Text="{DynamicResource StringSearchPackages}"/>
                         </StackPanel>
                     </uie:WatermarkExtension.Watermark>
                 </TextBox>
@@ -41,17 +49,19 @@
                            Width="1"
                            Fill="{DynamicResource {x:Static ui:Brushes.Layer1BorderBrush}}"/>
 
-                <Button Margin="5"
-                        x:Name="FilterButton"
-                        Content="{DynamicResource Filter}"
-                        Style="{DynamicResource {x:Static ui:Styles.AccentToolbarButton}}"
-                        ToolTip="{DynamicResource StringFilter}"
-                        Padding="0"
-                        Width="{Binding ElementName=FilterButton, Path=ActualHeight}"/>
+                <ToggleButton Margin="5"
+                              x:Name="FilterButton"
+                              Content="{DynamicResource Filter}"
+                              Style="{DynamicResource {x:Static ui:Styles.ToolbarToggleButton}}"
+                              ToolTip="{DynamicResource StringFilter}"
+                              Padding="0"
+                              Width="{Binding ElementName=FilterButton, Path=ActualHeight}"
+                              IsChecked="{Binding FilterPopupOpen}"/>
             </StackPanel>
         </Border>
 
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1"
+                      Margin="0,5,0,0">
             <ItemsControl HorizontalContentAlignment="Stretch" ItemsSource="{Binding Packages}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>

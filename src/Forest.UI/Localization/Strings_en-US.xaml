@@ -30,7 +30,20 @@
 Error code: {0}</String>
     <String x:Key="StringSetupIsStarting">Setup is starting...</String>
     <String x:Key="StringLinFileFilter">Installer package (*.lin)|*.lin|Compiled installer package (*.exe)|*.exe|All files (*.*)|*.*</String>
-    <String x:Key="StringSearchPackages">Search packages</String>
+    <String x:Key="StringSearchPackages">Search packages (Ctrl+Q)</String>
     <String x:Key="StringFilter">Filter</String>
     <String x:Key="StringStartPage">Start page</String>
+    <String x:Key="StringNoPackagesFound">No packages found.</String>
+    <String x:Key="StringSearchQueryNoPackagesFound">No packages matched the search.</String>
+    <String x:Key="StringUpdateAvailable">Update available</String>
+    <String x:Key="StringDeprecated">Deprecated</String>
+    <String x:Key="StringVersion">Version</String>
+    <String x:Key="StringPublisher">Publisher</String>
+    <String x:Key="StringUnknown">Unknown</String>
+    <String x:Key="StringUnknownPackage">{0} (unknown package)</String>
+    <String x:Key="StringUnknownPackageDescription">The package contains no valid manifest file.</String>
+    <String x:Key="StringNew">New</String>
+    <String x:Key="StringException">An exception occured. {0}</String>
+    <String x:Key="StringPackageTitleFormat">{0} ({1})</String>
+    <String x:Key="StringUnverified">Not verified</String>
 </y:ResourceDictionary>
