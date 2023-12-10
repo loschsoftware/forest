@@ -23,14 +23,17 @@ public class LibraryViewModel : ObservableObject
 {
     public LibraryViewModel()
     {
+        LibraryFilter filter = new(this);
+
         filterPopup = new()
         {
             IsOpen = false,
-            Content = new LibraryFilter(this),
-            Placement = PlacementMode.Mouse
+            Content = filter,
+            Placement = PlacementMode.MousePoint,
+            HorizontalOffset = -225 // TODO: Calculate offset instead
         };
 
-        Badges = [Badge.Orange("Update verfügbar"), Badge.Red("Veraltet"), Badge.Blue((string)Application.Current.TryFindResource("StringNew")), Badge.Red((string)Application.Current.TryFindResource("StringUnverified"))];
+        Badges = [Badge.Orange((string)Application.Current.TryFindResource("StringUpdateAvailable")), Badge.Red((string)Application.Current.TryFindResource("StringDeprecated")), Badge.Blue((string)Application.Current.TryFindResource("StringNew")), Badge.Red((string)Application.Current.TryFindResource("StringUnverified"))];
 
         ObservableCollection<FrameworkElement> buttons = new();
 

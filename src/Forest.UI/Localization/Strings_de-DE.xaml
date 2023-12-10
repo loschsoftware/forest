@@ -46,4 +46,16 @@ Fehlercode: {0}</String>
     <String x:Key="StringException">Es trat eine unbehandelte Ausnahme auf. {0}</String>
     <String x:Key="StringPackageTitleFormat">{0} ({1})</String>
     <String x:Key="StringUnverified">Nicht verifiziert</String>
+    <String x:Key="StringFilterPackages">Pakete filtern</String>
+    <String x:Key="StringSortBy">Sortieren nach:</String>
+    <String x:Key="StringSortByPackageName">Paketname</String>
+    <String x:Key="StringSortByPublisher">Herausgeber</String>
+    <String x:Key="StringSortByVersion">Version</String>
+    <String x:Key="StringSortAscending">Aufsteigend</String>
+    <String x:Key="StringSortDescending">Absteigend</String>
+    <String x:Key="StringGroupBy">Gruppieren nach:</String>
+    <String x:Key="StringGroupByNoGrouping">Keine Gruppierung</String>
+    <String x:Key="StringGroupByPublisher">Herausgeber</String>
+    <String x:Key="StringGroupByTag">Tag</String>
+    <String x:Key="StringTags">Tags:</String>
 </y:ResourceDictionary>

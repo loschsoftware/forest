@@ -24,11 +24,11 @@
                    Grid.ColumnSpan="2"
                    Margin="0,0,0,5"
                    FontSize="14"
-                   Text="Pakete filtern"/>
+                   Text="{DynamicResource StringFilterPackages}"/>
 
         <TextBlock Grid.Row="1"
                    Grid.Column="0"
-                   Text="Sortieren nach:"
+                   Text="{DynamicResource StringSortBy}"
                    Margin="0"
                    VerticalAlignment="Center"/>
 
@@ -38,9 +38,9 @@
                   SelectedIndex="0"
                   VerticalAlignment="Center">
 
-            <ComboBoxItem Content="Paketname"/>
-            <ComboBoxItem Content="Herausgeber"/>
-            <ComboBoxItem Content="Version"/>
+            <ComboBoxItem Content="{DynamicResource StringSortByPackageName}"/>
+            <ComboBoxItem Content="{DynamicResource StringSortByPublisher}"/>
+            <ComboBoxItem Content="{DynamicResource StringSortByVersion}"/>
         </ComboBox>
 
         <ToggleButton Grid.Row="1"
@@ -49,13 +49,13 @@
                       VerticalAlignment="Center"
                       Content="{DynamicResource SortAscending}"
                       Style="{DynamicResource {x:Static ui:Styles.ToolbarToggleButton}}"
-                      ToolTip="Aufsteigend"/>
+                      ToolTip="{DynamicResource StringSortAscending}"/>
 
         <TextBlock Grid.Row="2"
                    Grid.Column="0"
                    VerticalAlignment="Center"
                    Margin="0,10,0,0"
-                   Text="Gruppieren nach:"/>
+                   Text="{DynamicResource StringGroupBy}"/>
 
         <ComboBox Grid.Row="2"
                   Grid.Column="1"
@@ -63,15 +63,15 @@
                   Margin="10,10,0,0"
                   SelectedIndex="0">
 
-            <ComboBoxItem Content="Keine Gruppierung"/>
-            <ComboBoxItem Content="Herausgeber"/>
-            <ComboBoxItem Content="Tag"/>
+            <ComboBoxItem Content="{DynamicResource StringGroupByNoGrouping}"/>
+            <ComboBoxItem Content="{DynamicResource StringGroupByPublisher}"/>
+            <ComboBoxItem Content="{DynamicResource StringGroupByTag}"/>
         </ComboBox>
 
         <TextBlock Grid.Row="3"
                    Grid.Column="0"
                    Margin="0,10,0,0"
-                   Text="Tags:"
+                   Text="{DynamicResource StringTags}"
                    VerticalAlignment="Center"/>
 
         <ItemsControl Grid.Row="3"
