@@ -112,9 +112,6 @@ public class LibraryViewModel : ObservableObject
                 };
             }
 
-            if (manifest.PackageInfo.Publisher.ToLowerInvariant() != "losch")
-                badges.Add(Badge.Red((string)Application.Current.TryFindResource("StringUnverified")));
-
             TemplateButton button = new()
             {
                 MainText = string.Format((string)Application.Current.TryFindResource("StringPackageTitleFormat"), manifest.PackageInfo.PackageName, manifest.PackageInfo.UniqueId),
@@ -144,7 +141,7 @@ public class LibraryViewModel : ObservableObject
         _allPackages = buttons;
     }
 
-    private ObservableCollection<FrameworkElement> _allPackages;
+    private IEnumerable<FrameworkElement> _allPackages;
 
     private string _searchQuery;
     public string SearchQuery
@@ -211,11 +208,11 @@ public class LibraryViewModel : ObservableObject
 
             if (value == 2)
             {
-                Packages = Packages.OrderBy(p => Version.Parse(((TemplateButton)p).DescriptionText.Split("\r\n")[1].Split(":")[1]));
+                _allPackages = _allPackages.OrderBy(p => Version.Parse(((TemplateButton)p).DescriptionText.Split("\r\n")[1].Split(":")[1]));
             }
             else
             {
-                Packages = Packages.Select(f => (TemplateButton)f).OrderBy(t => value switch
+                _allPackages = _allPackages.Select(f => (TemplateButton)f).OrderBy(t => value switch
                 {
                     0 => t.MainText,
                     _ => t.DescriptionText.Split("\r\n")[0],
@@ -223,7 +220,10 @@ public class LibraryViewModel : ObservableObject
             }
 
             if (SortDirection)
-                Packages = Packages.Reverse();
+                _allPackages = _allPackages.Reverse();
+
+            Packages = _allPackages;
+            SearchQuery += ""; // Trigger setter
         }
     }
 
@@ -236,7 +236,9 @@ public class LibraryViewModel : ObservableObject
         set
         {
             SetProperty(ref _sortDirection, value);
-            Packages = Packages.Reverse();
+            _allPackages = _allPackages.Reverse();
+            Packages = _allPackages;
+            SearchQuery += ""; // Trigger setter
         }
     }
 
