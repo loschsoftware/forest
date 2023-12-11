@@ -33,7 +33,7 @@ public class LibraryViewModel : ObservableObject
             HorizontalOffset = -225 // TODO: Calculate offset instead
         };
 
-        Badges = [Badge.Orange((string)Application.Current.TryFindResource("StringUpdateAvailable")), Badge.Red((string)Application.Current.TryFindResource("StringDeprecated")), Badge.Blue((string)Application.Current.TryFindResource("StringNew")), Badge.Red((string)Application.Current.TryFindResource("StringUnverified"))];
+        Badges = [Badge.Orange((string)Application.Current.TryFindResource("StringUpdateAvailable"), Visibility.Visible), Badge.Red((string)Application.Current.TryFindResource("StringDeprecated"), Visibility.Visible), Badge.Blue((string)Application.Current.TryFindResource("StringNew"), Visibility.Visible), Badge.Red((string)Application.Current.TryFindResource("StringUnverified"), Visibility.Visible)];
 
         ObservableCollection<FrameworkElement> buttons = new();
 
@@ -199,6 +199,55 @@ public class LibraryViewModel : ObservableObject
     {
         get => _badges;
         set => SetProperty(ref _badges, value);
+    }
+
+    private int _sorting = 0;
+    public int Sorting
+    {
+        get => _sorting;
+        set
+        {
+            SetProperty(ref _sorting, value);
+
+            if (value == 2)
+            {
+                Packages = Packages.OrderBy(p => Version.Parse(((TemplateButton)p).DescriptionText.Split("\r\n")[1].Split(":")[1]));
+            }
+            else
+            {
+                Packages = Packages.Select(f => (TemplateButton)f).OrderBy(t => value switch
+                {
+                    0 => t.MainText,
+                    _ => t.DescriptionText.Split("\r\n")[0],
+                });
+            }
+
+            if (SortDirection)
+                Packages = Packages.Reverse();
+        }
+    }
+
+    // false: ascending
+    // true: descending
+    private bool _sortDirection = false;
+    public bool SortDirection
+    {
+        get => _sortDirection;
+        set
+        {
+            SetProperty(ref _sortDirection, value);
+            Packages = Packages.Reverse();
+        }
+    }
+
+    private int _grouping = 0;
+    public int Grouping
+    {
+        get => _grouping;
+        set
+        {
+            SetProperty(ref _grouping, value);
+        }
     }
 
     public ICommand FocusCommand => new RelayCommand<FrameworkElement>(f =>

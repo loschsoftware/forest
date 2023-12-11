@@ -6,7 +6,7 @@
        DataContext="{Binding ElementName=Root}"
        AllowsTransparency="True">
 
-    <Grid>
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -56,13 +56,13 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="3">
 
-            <Border.Effect>
-                <DropShadowEffect Direction="270"
-                              RenderingBias="Quality"
-                              Color="#F0F0F0"/>
-            </Border.Effect>
-
             <ContentControl Content="{Binding Content}"/>
         </Border>
     </Grid>
+
+    <Popup.Effect>
+        <DropShadowEffect Opacity="1"
+                          RenderingBias="Quality"
+                          Color="#F0F0F0"/>
+    </Popup.Effect>
 </Popup>

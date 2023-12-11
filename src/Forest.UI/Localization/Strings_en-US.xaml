@@ -58,4 +58,5 @@ Error code: {0}</String>
     <String x:Key="StringGroupByPublisher">Publisher</String>
     <String x:Key="StringGroupByTag">Tag</String>
     <String x:Key="StringTags">Tags:</String>
+    <String x:Key="StringInstallationDate">Installation date</String>
 </y:ResourceDictionary>
