@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Forest.UI.ViewModels;
 using Forest.UI.Views;
 using Losch.Installer;
 using Losch.Installer.Behaviors;
@@ -66,6 +67,11 @@ public class MainViewModel : ObservableObject
         {
             SetProperty(ref _currentPage, value);
             Title = value.Title;
+
+            if (value is LibraryPage)
+                StatusText = $"{string.Format((string)Application.Current.TryFindResource("StringNPackagesInstalled"), ((value as LibraryPage).DataContext as LibraryViewModel).Count.ToString())} • {string.Format((string)Application.Current.TryFindResource("StringTotalSize"), "0 B")}";
+            else
+                StatusText = "";
         }
     }
 
@@ -113,6 +119,27 @@ public class MainViewModel : ObservableObject
 
     public string CopyrightString { get; set; } = $"© {DateTime.Now.Year} Losch";
 
+    private double _width = 500;
+    public double Width
+    {
+        get => _width;
+        set => SetProperty(ref _width, value);
+    }
+
+    private double _height = 500;
+    public double Height
+    {
+        get => _height;
+        set => SetProperty(ref _height, value);
+    }
+
+    private string _statusText = "";
+    public string StatusText
+    {
+        get => _statusText;
+        set => SetProperty(ref _statusText, value);
+    }
+
     public ICommand CloseCommand => new RelayCommand(Application.Current.Shutdown);
 
     public ICommand NavigateToLastPage => new RelayCommand(() =>
@@ -132,16 +159,22 @@ public class MainViewModel : ObservableObject
     {
         _prevPage = CurrentPage;
         CurrentPage = new StartPage(this);
+        Width = 500;
+        Height = 500;
     });
 
     public ICommand ShowLibraryCommand => new RelayCommand(() =>
     {
         CurrentPage = new LibraryPage();
+        Width = 600;
+        Height = 600;
     });
 
     public ICommand ShowInstallApplicationPageCommand => new RelayCommand(() =>
     {
         CurrentPage = new InstallApplicationPage();
+        Width = 500;
+        Height = 500;
     });
 
     public ICommand BackCommand => new RelayCommand(() =>

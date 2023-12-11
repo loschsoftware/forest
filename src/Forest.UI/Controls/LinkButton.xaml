@@ -23,8 +23,8 @@
             <ContentControl x:Name="IconFrame"
                             Content="{Binding Icon}"
                             Visibility="{Binding IconVisibility}"
-                            Height="64"
-                            Width="64"
+                            MaxHeight="64"
+                            MaxWidth="64"
                             Margin="5"/>
             
             <TextBlock Margin="5,5,10,5"
@@ -33,7 +33,7 @@
                        TextWrapping="Wrap">
                 
                 <Run FontFamily="Segoe UI Semibold"
-                     FontSize="20"
+                     FontSize="{Binding HeaderFontSize}"
                      Text="{Binding MainText}"/>
                 
                 <LineBreak/>

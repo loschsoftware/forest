@@ -31,25 +31,32 @@
                       Color="#F0F0F0"/>
             </Border.Effect>
 
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="200"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="0">
+                    <TextBox Width="200"
                          Margin="5"
                          Text="{Binding SearchQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          x:Name="SearchBox">
-                    <uie:WatermarkExtension.Watermark>
-                        <StackPanel Orientation="Horizontal">
-                            <ContentControl Content="{DynamicResource Search}"/>
-                            <TextBlock Margin="5,0,0,0"
+                        <uie:WatermarkExtension.Watermark>
+                            <StackPanel Orientation="Horizontal">
+                                <ContentControl Content="{DynamicResource Search}"/>
+                                <TextBlock Margin="5,0,0,0"
                                        Text="{DynamicResource StringSearchPackages}"/>
-                        </StackPanel>
-                    </uie:WatermarkExtension.Watermark>
-                </TextBox>
+                            </StackPanel>
+                        </uie:WatermarkExtension.Watermark>
+                    </TextBox>
 
-                <Rectangle Margin="5"
+                    <Rectangle Margin="5"
                            Width="1"
                            Fill="{DynamicResource {x:Static ui:Brushes.Layer1BorderBrush}}"/>
 
-                <ToggleButton Margin="5"
+                    <ToggleButton Margin="5"
                               x:Name="FilterButton"
                               Content="{DynamicResource Filter}"
                               Style="{DynamicResource {x:Static ui:Styles.ToolbarToggleButton}}"
@@ -57,7 +64,12 @@
                               Padding="0"
                               Width="{Binding ElementName=FilterButton, Path=ActualHeight}"
                               IsChecked="{Binding FilterPopupOpen}"/>
-            </StackPanel>
+                </StackPanel>
+
+                <ContentControl x:Name="FilterContainer"
+                                Grid.Row="1"
+                                Visibility="{Binding FilterVisibility}"/>
+            </Grid>
         </Border>
 
         <ScrollViewer Grid.Row="1"

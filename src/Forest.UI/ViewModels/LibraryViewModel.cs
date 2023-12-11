@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Forest.UI.Controls;
+using Forest.UI.Views;
+using Forest.ViewModels;
 using Losch.Installer.PackageManifest;
 using Losch.LSEdit.Core.UI;
 using System;
@@ -10,7 +12,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -21,21 +22,49 @@ namespace Forest.UI.ViewModels;
 
 public class LibraryViewModel : ObservableObject
 {
+    private const double DisabledBadgeOpacity = 0.4;
+
     public LibraryViewModel()
     {
-        LibraryFilter filter = new(this);
-
-        filterPopup = new()
+        Badge updateAvailableBadge = Badge.Orange((string)Application.Current.TryFindResource("StringUpdateAvailable"));
+        updateAvailableBadge.Margin = new(0, 0, 5, 5);
+        bool updateAvailableBadgeEnabled = true;
+        updateAvailableBadge.MouseLeftButtonUp += (_, _) =>
         {
-            IsOpen = false,
-            Content = filter,
-            Placement = PlacementMode.MousePoint,
-            HorizontalOffset = -225 // TODO: Calculate offset instead
+            updateAvailableBadgeEnabled = !updateAvailableBadgeEnabled;
+            updateAvailableBadge.Opacity = updateAvailableBadgeEnabled ? 1 : DisabledBadgeOpacity;
         };
 
-        Badges = [Badge.Orange((string)Application.Current.TryFindResource("StringUpdateAvailable"), Visibility.Visible), Badge.Red((string)Application.Current.TryFindResource("StringDeprecated"), Visibility.Visible), Badge.Blue((string)Application.Current.TryFindResource("StringNew"), Visibility.Visible), Badge.Red((string)Application.Current.TryFindResource("StringUnverified"), Visibility.Visible)];
+        Badge deprecatedBadge = Badge.Red((string)Application.Current.TryFindResource("StringDeprecated"));
+        deprecatedBadge.Margin = new(0, 0, 5, 5);
+        bool deprecatedBadgeEnabled = true;
+        deprecatedBadge.MouseLeftButtonUp += (_, _) =>
+        {
+            deprecatedBadgeEnabled = !deprecatedBadgeEnabled;
+            deprecatedBadge.Opacity = deprecatedBadgeEnabled ? 1 : DisabledBadgeOpacity;
+        };
 
-        ObservableCollection<FrameworkElement> buttons = new();
+        Badge newBadge = Badge.Blue((string)Application.Current.TryFindResource("StringNew"));
+        newBadge.Margin = new(0, 0, 5, 5);
+        bool newBadgeEnabled = true;
+        newBadge.MouseLeftButtonUp += (_, _) =>
+        {
+            newBadgeEnabled = !newBadgeEnabled;
+            newBadge.Opacity = newBadgeEnabled ? 1 : DisabledBadgeOpacity;
+        };
+
+        Badge unverifiedBadge = Badge.Red((string)Application.Current.TryFindResource("StringUnverified"));
+        unverifiedBadge.Margin = new(0, 0, 5, 5);
+        bool unverifiedBadgeEnabled = true;
+        unverifiedBadge.MouseLeftButtonUp += (_, _) =>
+        {
+            unverifiedBadgeEnabled = !unverifiedBadgeEnabled;
+            unverifiedBadge.Opacity = unverifiedBadgeEnabled ? 1 : DisabledBadgeOpacity;
+        };
+
+        Badges = [updateAvailableBadge, deprecatedBadge, newBadge, unverifiedBadge];
+
+        ObservableCollection<FrameworkElement> buttons = [];
 
         string packagesDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Losch", "Installer", "Packages");
         if (!Directory.Exists(packagesDir))
@@ -124,6 +153,12 @@ public class LibraryViewModel : ObservableObject
                 BorderBrush = (Brush)Application.Current.FindResource(AdonisUI.Brushes.Layer1BorderBrush)
             };
 
+            button.Click += (s, e) =>
+            {
+                MainViewModel mvm = Application.Current.MainWindow.DataContext as MainViewModel;
+                mvm.CurrentPage = new PackageDetailsPage();
+            };
+
             buttons.Add(button);
         }
 
@@ -175,7 +210,18 @@ public class LibraryViewModel : ObservableObject
     public IEnumerable<FrameworkElement> Packages
     {
         get => _packages;
-        set => SetProperty(ref _packages, value);
+        set
+        {
+            SetProperty(ref _packages, value);
+            Count = value.Count();
+        }
+    }
+
+    private int _count = 0;
+    public int Count
+    {
+        get => _count;
+        set => SetProperty(ref _count, value);
     }
 
     private BalloonPopup filterPopup = null;
@@ -187,8 +233,15 @@ public class LibraryViewModel : ObservableObject
         set
         {
             SetProperty(ref _filterPopupOpen, value);
-            filterPopup.IsOpen = value;
+            FilterVisibility = value ? Visibility.Visible : Visibility.Collapsed;
         }
+    }
+
+    private Visibility _filterVisibility = Visibility.Collapsed;
+    public Visibility FilterVisibility
+    {
+        get => _filterVisibility;
+        set => SetProperty(ref _filterVisibility, value);
     }
 
     private ObservableCollection<Badge> _badges = [];

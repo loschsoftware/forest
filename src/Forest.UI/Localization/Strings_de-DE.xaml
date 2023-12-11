@@ -59,4 +59,21 @@ Fehlercode: {0}</String>
     <String x:Key="StringGroupByTag">Tag</String>
     <String x:Key="StringTags">Tags:</String>
     <String x:Key="StringInstallationDate">Installationsdatum</String>
+    <String x:Key="StringNPackagesInstalled">{0} Pakete installiert</String>
+    <String x:Key="StringTotalSize">Gesamtgröße: {0}</String>
+    <String x:Key="StringPackageDetails">Paketdetails</String>
+    <String x:Key="StringGeneralInformation">Grundlegende Informationen</String>
+    <String x:Key="StringGeneralInformationDeveloper">Hersteller:</String>
+    <String x:Key="StringGeneralInformationPublisher">Herausgeber:</String>
+    <String x:Key="StringGeneralInformationVersion">Version:</String>
+    <String x:Key="StringGeneralInformationInstallationDate">Installiert am:</String>
+    <String x:Key="StringGeneralInformationLocation">Speicherort:</String>
+    <String x:Key="StringManagePackage">Paket verwalten</String>
+    <String x:Key="StringManagePackageUpdate">Aktualisieren</String>
+    <String x:Key="StringManagePackageUpdateDescription">Verfügbare Version: {0}</String>
+    <String x:Key="StringManagePackageRepair">Reparieren</String>
+    <String x:Key="StringManagePackageRepairDescription">Installiert die Anwendung neu, behält jedoch alle Einstellungen und Daten.</String>
+    <String x:Key="StringManagePackageUninstall">Deinstallieren</String>
+    <String x:Key="StringManagePackageUninstallDescription">Entfernt die Anwendung und alle zugehörigen Daten.</String>
+    <String x:Key="StringRun">Ausführen</String>
 </y:ResourceDictionary>

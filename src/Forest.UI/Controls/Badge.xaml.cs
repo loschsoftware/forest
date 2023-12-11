@@ -9,6 +9,7 @@ public partial class Badge : UserControl
     public Badge()
     {
         InitializeComponent();
+        CloseButton.Click += (s, e) => OnCloseButtonClick();
     }
 
     public static Badge Orange(string text, Visibility closeButtonVisibility = Visibility.Collapsed) => new()
@@ -44,6 +45,20 @@ public partial class Badge : UserControl
     public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(Badge), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty BadgeBackgroundProperty = DependencyProperty.Register("BadgeBackground", typeof(Brush), typeof(Badge), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty CloseButtonVisibilityProperty = DependencyProperty.Register("CloseButtonVisibility", typeof(Visibility), typeof(Badge), new FrameworkPropertyMetadata(Visibility.Collapsed));
+
+    public static readonly RoutedEvent CloseButtonClickEvent = EventManager.RegisterRoutedEvent("CloseButtonClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(Badge));
+
+    public event RoutedEventHandler CloseButtonClick
+    {
+        add => AddHandler(CloseButtonClickEvent, value);
+        remove => RemoveHandler(CloseButtonClickEvent, value);
+    }
+
+    private void OnCloseButtonClick()
+    {
+        RoutedEventArgs e = new(CloseButtonClickEvent);
+        RaiseEvent(e);
+    }
 
     public string Text
     {

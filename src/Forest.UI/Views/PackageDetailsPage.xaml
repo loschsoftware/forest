@@ -1,0 +1,138 @@
+﻿<Page x:Class="Forest.UI.Views.PackageDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="clr-namespace:AdonisUI;assembly=AdonisUI"
+      xmlns:controls="clr-namespace:Forest.UI.Controls"
+      Title="{DynamicResource StringPackageDetails}">
+
+    <ScrollViewer>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Column="0">
+                    <Image Height="64"
+                           Width="64"
+                           Source="C:\Users\Jonas\source\repos\HtlStatus\HtlStatus\obj\Debug\net6.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png"/>
+
+                    <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Center">
+                
+                        <Run FontSize="20"
+                             Text="LSEdit"/>
+                        <LineBreak/>
+                        <Run FontSize="14"
+                             Text="Losch.LSEdit"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <Button Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource {x:Static ui:Styles.ToolbarButton}}"
+                        ToolTip="{DynamicResource StringRun}">
+                    
+                    <Viewbox Height="32"
+                             Width="32">
+                        <ContentControl Content="{DynamicResource RunOutline}"/>
+                    </Viewbox>
+                </Button>
+            </Grid>
+
+            <GroupBox Grid.Row="1"
+                      Margin="0,10,0,0"
+                      Header="{DynamicResource StringGeneralInformation}">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Vertical"
+                            Grid.Column="0">
+                        <TextBlock>
+                        <Run Text="{DynamicResource StringGeneralInformationDeveloper}"/>
+                        <LineBreak/>
+                        <Run Text="{DynamicResource StringGeneralInformationPublisher}"/>
+                        <LineBreak/>
+                        <Run Text="{DynamicResource StringGeneralInformationVersion}"/>
+                        <LineBreak/>
+                        <Run Text="{DynamicResource StringGeneralInformationInstallationDate}"/>
+                        <LineBreak/>
+                        <Run Text="{DynamicResource StringGeneralInformationLocation}"/>
+                        </TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical"
+                            Grid.Column="1">
+                        <TextBlock>
+                        <Run Text="Losch"/>
+                        <LineBreak/>
+                        <Run Text="Losch"/>
+                        <LineBreak/>
+                        <Run Text="1.0"/>
+                        <LineBreak/>
+                        <Run Text="01.12.2023"/>
+                        <LineBreak/>
+                        <Run Text="C:\Program Files\Losch\LSEdit"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="2"
+                      Margin="0,10,0,0"
+                      Header="{DynamicResource StringManagePackage}">
+
+                <WrapPanel Orientation="Horizontal">
+                    <controls:LinkButton MainText="{DynamicResource StringManagePackageUpdate}"
+                                         DescriptionText="{DynamicResource StringManagePackageUpdateDescription}"
+                                         HeaderFontSize="12"
+                                         Margin="0,0,10,10">
+                        <controls:LinkButton.Icon>
+                            <Viewbox Width="32"
+                                     Height="32">
+                                <ContentControl Content="{DynamicResource UpdateAnimation}"/>
+                            </Viewbox>
+                        </controls:LinkButton.Icon>
+                    </controls:LinkButton>
+
+                    <controls:LinkButton MainText="{DynamicResource StringManagePackageRepair}"
+                                         DescriptionText="{DynamicResource StringManagePackageRepairDescription}"
+                                         HeaderFontSize="12"
+                                         Margin="0,0,10,10">
+                        <controls:LinkButton.Icon>
+                            <Viewbox Width="32"
+                                     Height="32">
+                                <ContentControl Content="{DynamicResource Repair}"/>
+                            </Viewbox>
+                        </controls:LinkButton.Icon>
+                    </controls:LinkButton>
+
+                    <controls:LinkButton MainText="{DynamicResource StringManagePackageUninstall}"
+                                         DescriptionText="{DynamicResource StringManagePackageUninstallDescription}"
+                                         HeaderFontSize="12"
+                                         Margin="0,0,10,10">
+                        <controls:LinkButton.Icon>
+                            <Viewbox Width="32"
+                                     Height="32">
+                                <ContentControl Content="{DynamicResource Uninstall}"/>
+                            </Viewbox>
+                        </controls:LinkButton.Icon>
+                    </controls:LinkButton>
+                </WrapPanel>
+            </GroupBox>
+        </Grid>
+    </ScrollViewer>
+</Page>

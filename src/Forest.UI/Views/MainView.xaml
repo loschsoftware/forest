@@ -8,11 +8,14 @@
                   Title="{DynamicResource StringAppTitle}"
                   Height="500"
                   Width="500"
+                  MinHeight="500"
+                  MinWidth="500"
                   WindowStartupLocation="CenterScreen"
                   ResizeMode="CanMinimize"
                   IconVisibility="Collapsed"
                   Background="{DynamicResource {x:Static ui:Brushes.Layer1BackgroundBrush}}"
-                  uie:LayerExtension.Layer="1">
+                  uie:LayerExtension.Layer="1"
+                  TextOptions.TextFormattingMode="Display">
 
     <Window.DataContext>
         <vm:MainViewModel/>
@@ -75,7 +78,8 @@
         <Frame Grid.Row="1"
                Content="{Binding CurrentPage}"
                Navigating="Frame_Navigating"
-               NavigationUIVisibility="Hidden"/>
+               NavigationUIVisibility="Hidden"
+               TextOptions.TextFormattingMode="Display"/>
 
         <Border Grid.Row="2"
                 BorderThickness="0,1,0,0"
@@ -91,14 +95,21 @@
 
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
+                <TextBlock Margin="15"
+                           Grid.Column="0"
+                           VerticalAlignment="Center"
+                           Text="{Binding StatusText}"
+                           Visibility="Collapsed"/>
+
                 <Button Margin="15,15,0,15"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         MinWidth="75"
                         Content="{DynamicResource StringButtonBack}"
                         Command="{Binding BackCommand}"
@@ -106,7 +117,7 @@
                         IsEnabled="{Binding IsBackButtonEnabled}"/>
 
                 <Button Margin="15,15,0,15"
-                        Grid.Column="2"
+                        Grid.Column="3"
                         MinWidth="75"
                         Content="{DynamicResource StringButtonNext}"
                         Command="{Binding NextCommand}"
@@ -114,7 +125,7 @@
                         IsDefault="True"/>
 
                 <Button Margin="15"
-                        Grid.Column="3"
+                        Grid.Column="4"
                         MinWidth="75"
                         Content="{Binding CloseButtonText}"
                         Command="{Binding CloseCommand}"/>

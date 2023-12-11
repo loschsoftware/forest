@@ -59,4 +59,21 @@ Error code: {0}</String>
     <String x:Key="StringGroupByTag">Tag</String>
     <String x:Key="StringTags">Tags:</String>
     <String x:Key="StringInstallationDate">Installation date</String>
+    <String x:Key="StringNPackagesInstalled">{0} packages installed</String>
+    <String x:Key="StringTotalSize">Total size: {0}</String>
+    <String x:Key="StringPackageDetails">Package details</String>
+    <String x:Key="StringGeneralInformation">General information</String>
+    <String x:Key="StringGeneralInformationDeveloper">Developer:</String>
+    <String x:Key="StringGeneralInformationPublisher">Publisher:</String>
+    <String x:Key="StringGeneralInformationVersion">Version:</String>
+    <String x:Key="StringGeneralInformationInstallationDate">Installation date:</String>
+    <String x:Key="StringGeneralInformationLocation">Location:</String>
+    <String x:Key="StringManagePackage">Manage package</String>
+    <String x:Key="StringManagePackageUpdate">Update</String>
+    <String x:Key="StringManagePackageUpdateDescription">Available version: {0}</String>
+    <String x:Key="StringManagePackageRepair">Repair</String>
+    <String x:Key="StringManagePackageRepairDescription">Reinstalls the application, but keeps settings and data.</String>
+    <String x:Key="StringManagePackageUninstall">Uninstall</String>
+    <String x:Key="StringManagePackageUninstallDescription">Removes the application including all its data.</String>
+    <String x:Key="StringRun">Run</String>
 </y:ResourceDictionary>

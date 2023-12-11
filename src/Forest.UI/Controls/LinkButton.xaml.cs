@@ -21,10 +21,11 @@ public partial class LinkButton : UserControl
     public static readonly DependencyProperty MainTextProperty = DependencyProperty.Register("MainText", typeof(string), typeof(LinkButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty DescriptionTextProperty = DependencyProperty.Register("DescriptionText", typeof(string), typeof(LinkButton), new FrameworkPropertyMetadata(null));
     public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command", typeof(ICommand), typeof(LinkButton), new FrameworkPropertyMetadata(null));
+    public static readonly DependencyProperty HeaderFontSizeProperty = DependencyProperty.Register("HeaderFontSize", typeof(double), typeof(LinkButton), new FrameworkPropertyMetadata(20.0));
 
     public object Icon
     {
-        get => (object)GetValue(IconProperty);
+        get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
     }
 
@@ -50,6 +51,12 @@ public partial class LinkButton : UserControl
     {
         get => (ICommand)GetValue(CommandProperty);
         set => SetValue(CommandProperty, value);
+    }
+
+    public double HeaderFontSize
+    {
+        get => (double)GetValue(HeaderFontSizeProperty);
+        set => SetValue(HeaderFontSizeProperty, value);
     }
 
     private void UserControl_MouseEnter(object sender, MouseEventArgs e)
