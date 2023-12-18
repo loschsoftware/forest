@@ -22,25 +22,28 @@
 
                 <StackPanel Orientation="Horizontal"
                             Grid.Column="0">
-                    <Image Height="64"
-                           Width="64"
-                           Source="C:\Users\Jonas\source\repos\HtlStatus\HtlStatus\obj\Debug\net6.0-android\resizetizer\r\drawable-xxxhdpi\dotnet_bot.png"/>
+
+                    <ContentControl Height="64"
+                                    Width="64"
+                                    Content="{Binding Icon}"/>
 
                     <TextBlock Margin="10,0,0,0"
                            VerticalAlignment="Center">
                 
                         <Run FontSize="20"
-                             Text="LSEdit"/>
+                             Text="{Binding PackageTitle}"/>
                         <LineBreak/>
                         <Run FontSize="14"
-                             Text="Losch.LSEdit"/>
+                             Text="{Binding PackageId}"/>
                     </TextBlock>
                 </StackPanel>
 
                 <Button Grid.Column="1"
                         VerticalAlignment="Center"
                         Style="{DynamicResource {x:Static ui:Styles.ToolbarButton}}"
-                        ToolTip="{DynamicResource StringRun}">
+                        ToolTip="{DynamicResource StringRun}"
+                        Visibility="{Binding LaunchButtonVisibility}"
+                        Command="{Binding LaunchCommand}">
                     
                     <Viewbox Height="32"
                              Width="32">
@@ -60,32 +63,32 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Orientation="Vertical"
-                            Grid.Column="0">
+                                Grid.Column="0">
                         <TextBlock>
-                        <Run Text="{DynamicResource StringGeneralInformationDeveloper}"/>
-                        <LineBreak/>
-                        <Run Text="{DynamicResource StringGeneralInformationPublisher}"/>
-                        <LineBreak/>
-                        <Run Text="{DynamicResource StringGeneralInformationVersion}"/>
-                        <LineBreak/>
-                        <Run Text="{DynamicResource StringGeneralInformationInstallationDate}"/>
-                        <LineBreak/>
-                        <Run Text="{DynamicResource StringGeneralInformationLocation}"/>
+                            <Run Text="{DynamicResource StringGeneralInformationDeveloper}"/>
+                            <LineBreak/>
+                            <Run Text="{DynamicResource StringGeneralInformationPublisher}"/>
+                            <LineBreak/>
+                            <Run Text="{DynamicResource StringGeneralInformationVersion}"/>
+                            <LineBreak/>
+                            <Run Text="{DynamicResource StringGeneralInformationInstallationDate}"/>
+                            <LineBreak/>
+                            <Run Text="{DynamicResource StringGeneralInformationLocation}"/>
                         </TextBlock>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical"
-                            Grid.Column="1">
-                        <TextBlock>
-                        <Run Text="Losch"/>
-                        <LineBreak/>
-                        <Run Text="Losch"/>
-                        <LineBreak/>
-                        <Run Text="1.0"/>
-                        <LineBreak/>
-                        <Run Text="01.12.2023"/>
-                        <LineBreak/>
-                        <Run Text="C:\Program Files\Losch\LSEdit"/>
+                                Grid.Column="1">
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="{Binding Developer}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding Publisher}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding Version}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding InstallationDate}"/>
+                            <LineBreak/>
+                            <Run Text="{Binding Location}"/>
                         </TextBlock>
                     </StackPanel>
                 </Grid>

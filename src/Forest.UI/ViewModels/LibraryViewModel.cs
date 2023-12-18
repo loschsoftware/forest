@@ -117,7 +117,7 @@ public class LibraryViewModel : ObservableObject
             if (-(Directory.GetCreationTime(package) - DateTime.Now).TotalDays < 3)
                 badges.Add(Badge.Blue((string)Application.Current.TryFindResource("StringNew")));
 
-            string publisher = manifest.PackageInfo.Publisher, version = manifest.PackageInfo.Version;
+            string publisher = manifest.PackageInfo.Publisher, version = manifest.Version;
 
             FrameworkElement icon = new Viewbox()
             {
@@ -156,7 +156,7 @@ public class LibraryViewModel : ObservableObject
             button.Click += (s, e) =>
             {
                 MainViewModel mvm = Application.Current.MainWindow.DataContext as MainViewModel;
-                mvm.CurrentPage = new PackageDetailsPage();
+                mvm.CurrentPage = new PackageDetailsPage(manifest);
             };
 
             buttons.Add(button);
@@ -223,8 +223,6 @@ public class LibraryViewModel : ObservableObject
         get => _count;
         set => SetProperty(ref _count, value);
     }
-
-    private BalloonPopup filterPopup = null;
 
     private bool _filterPopupOpen = false;
     public bool FilterPopupOpen

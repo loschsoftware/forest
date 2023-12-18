@@ -39,10 +39,4 @@ public class PackageInfo
     /// </summary>
     [XmlElement("Icon")]
     public string IconFile { get; set; }
-
-    /// <summary>
-    /// Specifies the package version.
-    /// </summary>
-    [XmlElement]
-    public string Version { get; set; }
 }
