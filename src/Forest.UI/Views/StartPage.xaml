@@ -24,7 +24,8 @@
                              MainText="{DynamicResource StringInstallApplication}"
                              DescriptionText="{DynamicResource StringInstallApplicationDescription}"
                              Margin="0,30,0,15"
-                             Click="InstallApplication">
+                             Click="InstallApplication"
+                             Style="{DynamicResource MainPageLinkButton}">
             
             <controls:LinkButton.Icon>
                 <Viewbox Height="48"
@@ -39,7 +40,8 @@
                              MainText="{DynamicResource StringInstallPackage}"
                              DescriptionText="{DynamicResource StringInstallPackageDescription}"
                              Margin="0,0,0,15"
-                             Click="InstallPackage">
+                             Click="InstallPackage"
+                             Style="{DynamicResource MainPageLinkButton}">
 
             <controls:LinkButton.Icon>
                 <Viewbox Height="48"
@@ -54,7 +56,8 @@
                              MainText="{DynamicResource StringLibrary}"
                              Margin="0,0,0,30"
                              DescriptionText="{DynamicResource StringLibraryDescription}"
-                             Click="ShowLibrary">
+                             Click="ShowLibrary"
+                             Style="{DynamicResource MainPageLinkButton}">
             
             <controls:LinkButton.Icon>
                 <Viewbox Height="48"
