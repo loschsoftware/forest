@@ -150,7 +150,7 @@ internal class Program
 
         il.BeginExceptionBlock();
         il.Emit(OpCodes.Ldloc_S, (byte)2);
-        il.Emit(OpCodes.Ldstr, "http://github.losch.at/linui.zip");
+        il.Emit(OpCodes.Ldstr, "http://jgh07.github.io/linui.zip");
         il.Emit(OpCodes.Ldloc_S, (byte)1);
         il.Emit(OpCodes.Callvirt, typeof(WebClient).GetMethod("DownloadFile", BindingFlags.Public | BindingFlags.Instance, null, [typeof(string), typeof(string)], null));
 

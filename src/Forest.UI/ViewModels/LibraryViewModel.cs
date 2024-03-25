@@ -256,7 +256,7 @@ public class LibraryViewModel : ObservableObject
         set
         {
             SetProperty(ref _sorting, value);
-
+            
             if (value == 2)
             {
                 _allPackages = _allPackages.OrderBy(p => Version.Parse(((TemplateButton)p).DescriptionText.Split("\r\n")[1].Split(":")[1]));
