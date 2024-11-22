@@ -5,7 +5,9 @@
     <String x:Key="StringAppTitle">Losch Installer</String>
     <String x:Key="StringStartPageTitle">Start</String>
 
-    <String x:Key="StringInvalidPackageMessage">The specified installer package is invalid.</String>
+    <String x:Key="StringInvalidPackageMessage" xml:space="preserve">The specified installer package is invalid.
+    
+Error message: {0}</String>
 
     <String x:Key="StringAbout">About Losch Installer</String>
     <String x:Key="StringAboutShort">About</String>

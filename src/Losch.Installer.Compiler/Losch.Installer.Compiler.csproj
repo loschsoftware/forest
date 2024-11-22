@@ -6,5 +6,6 @@
 		<AssemblyName>linbsc</AssemblyName>
 		<Platforms>AnyCPU;x64</Platforms>
 		<UseWPF>true</UseWPF>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 </Project>

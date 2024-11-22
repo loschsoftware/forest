@@ -5,7 +5,9 @@
     <String x:Key="StringAppTitle">Losch Installer</String>
     <String x:Key="StringStartPageTitle">Start</String>
 
-    <String x:Key="StringInvalidPackageMessage">Das angegebene Installer-Paket ist ungültig.</String>
+    <String x:Key="StringInvalidPackageMessage" xml:space="preserve">Das angegebene Installer-Paket ist ungültig.
+    
+Fehlermeldung: {0}</String>
 
     <String x:Key="StringAbout">Info zu Losch Installer</String>
     <String x:Key="StringAboutShort">Informationen</String>

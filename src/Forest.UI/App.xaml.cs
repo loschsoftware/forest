@@ -86,12 +86,11 @@ public partial class App : Application
                 {
                     { 0, lr.GetManifest().Steps.ToList() }
                 };
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 AdonisUI.Controls.MessageBox.Show(
-                    (string)Current.TryFindResource("StringInvalidPackageMessage"),
+                    string.Format((string)Current.TryFindResource("StringInvalidPackageMessage"), ex.ToString()),
                     (string)Current.TryFindResource("StringAppTitle"),
                     AdonisUI.Controls.MessageBoxButton.OK,
                     AdonisUI.Controls.MessageBoxImage.Error);
